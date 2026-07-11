@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MahdiPlayer Ultra Pro</title>
+<title>MahdiPlayer Ultra Stable</title>
 
 <style>
 body {
@@ -18,7 +18,7 @@ body {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background: radial-gradient(circle, #000 0%, #050505 100%);
+  background: #000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,12 +70,6 @@ video {
   border-radius: 16px;
   background: #000;
   box-shadow: 0 0 25px #00eaff55;
-  transform: perspective(800px) rotateX(2deg);
-}
-
-/* پارالاکس */
-body:hover #playerBox {
-  transform: translateY(-5px);
 }
 </style>
 </head>
@@ -94,38 +88,25 @@ body:hover #playerBox {
 
 <script>
 const parts = [
-  "https://raw.githubusercontent.com/USERNAME/REPO/main/20260711_192115_001.mp4",
-  "https://raw.githubusercontent.com/USERNAME/REPO/main/20260711_192115_002.mp4",
-  "https://raw.githubusercontent.com/USERNAME/REPO/main/20260711_192115_003.mp4",
-  "https://raw.githubusercontent.com/USERNAME/REPO/main/20260711_192115_004.mp4
-  "https://raw.githubusercontent.com/USERNAME/REPO/main/20260711_192115_003.mp4"
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_001.mp4",
+
 ];
 
-async function mergeVideoParts() {
-  let buffers = [];
+let index = 0;
+const player = document.getElementById("player");
 
-  for (let url of parts) {
-    let res = await fetch(url);
-    let buf = await res.arrayBuffer();
-    buffers.push(buf);
+function playNext() {
+  if (index < parts.length) {
+    player.src = parts[index];
+    player.play();
+    index++;
   }
-
-  let totalLength = buffers.reduce((sum, b) => sum + b.byteLength, 0);
-  let merged = new Uint8Array(totalLength);
-
-  let offset = 0;
-  for (let b of buffers) {
-    merged.set(new Uint8Array(b), offset);
-    offset += b.byteLength;
-  }
-
-  let blob = new Blob([merged], { type: "video/mp4" });
-  let videoURL = URL.createObjectURL(blob);
-
-  document.getElementById("player").src = videoURL;
 }
 
-mergeVideoParts();
+player.addEventListener("ended", playNext);
+
+// شروع پخش
+playNext();
 </script>
 
 </body>
