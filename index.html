@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MahdiPlayer</title>
+<title>MahdiPlayer Ultra Stable</title>
 
 <style>
 body {
@@ -21,9 +21,10 @@ body {
   justify-content: center;
   align-items: center;
   color: #00eaff;
-  font-size: 2.2rem;
-  letter-spacing: 2px;
-  animation: fadeOut 2s ease-in-out 3s forwards;
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  animation: fadeOut 2s ease-in-out 4s forwards;
+  z-index: 999;
 }
 
 @keyframes fadeOut {
@@ -40,23 +41,23 @@ body {
 }
 
 @keyframes typing {
-  to { width: 260px; }
+  to { width: 300px; }
 }
 
 /* پلیر */
 #playerBox {
   width: 95%;
   max-width: 900px;
-  margin: 120px auto;
-  padding: 20px;
+  margin: 140px auto;
+  padding: 25px;
   background: #0d0d0d;
-  border-radius: 16px;
-  box-shadow: 0 0 30px #00eaff55;
+  border-radius: 20px;
+  box-shadow: 0 0 40px #00eaff55;
 }
 
 video {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 16px;
   background: #000;
 }
 </style>
@@ -73,10 +74,41 @@ video {
 </div>
 
 <script>
+const parts = [
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_001.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_002.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_003.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_004.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_005.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_006.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_007.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_008.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_009.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_010.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_011.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_012.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_102.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_920.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_820.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_720.mp4",
+  "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192703.mp4"
+];
+
+let index = 0;
 const player = document.getElementById("player");
 
-// لینک واقعی‌ات رو اینجا بذار
-player.src = "https://raw.githubusercontent.com/Mahdi/iwmahdiprogrammer-debug/main/20260711_192115_001.mp4";
+function playNext() {
+  if (index < parts.length) {
+    player.src = parts[index];
+    player.play();
+    index++;
+  }
+}
+
+player.addEventListener("ended", playNext);
+
+// شروع پخش
+playNext();
 </script>
 
 </body>
