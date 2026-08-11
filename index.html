@@ -1501,6 +1501,9 @@ html[dir="rtl"] .skill:hover{
 
 
 <body>
+   <audio id="bgMusic" loop preload="auto">
+    <source src="mahdi.mp3" type="audio/mpeg">
+</audio>
 
 
 <div class="background">
@@ -2698,12 +2701,21 @@ document
 
 
             document
-                .getElementById(
-                    "loginScreen"
-                )
-                .classList.add(
-                    "hide"
-                );
+    .getElementById(
+        "loginScreen"
+    )
+    .classList.add(
+        "hide"
+    );
+
+const bgMusic =
+    document.getElementById("bgMusic");
+
+bgMusic.volume = 0.22;
+
+bgMusic.play().catch(() => {
+    console.log("Music autoplay was blocked.");
+});
 
         }
     );
