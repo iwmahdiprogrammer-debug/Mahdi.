@@ -1,0 +1,3438 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mahdi Maramzi — PROGRAMMER</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@400;500;600&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<!-- Face API -->
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+
+<style>
+
+:root{
+--bg:#070707;
+--surface:#101010;
+--surface2:#171717;
+--text:#f5f5f5;
+--muted:#8a8a8a;
+--muted2:#4d4d4d;
+--border:rgba(255,255,255,.11);
+--shadow:0 30px 100px rgba(0,0,0,.45);
+}
+
+body.light{
+--bg:#f4f4f1;
+--surface:#fff;
+--surface2:#ecece8;
+--text:#111;
+--muted:#666;
+--muted2:#aaa;
+--border:rgba(0,0,0,.12);
+--shadow:0 30px 100px rgba(0,0,0,.08);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+font-family:"DM Sans",sans-serif;
+overflow-x:hidden;
+transition:.5s;
+}
+
+body.rtl{
+font-family:"Vazirmatn",sans-serif;
+}
+
+a{
+color:inherit;
+text-decoration:none;
+}
+
+button,input{
+font:inherit;
+}
+
+
+/* =========================
+INTRO / LOGIN
+========================= */
+
+#intro{
+position:fixed;
+inset:0;
+z-index:10000;
+background:#050505;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:25px;
+transition:1s cubic-bezier(.16,1,.3,1);
+}
+
+#intro.hide{
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+transform:scale(1.04);
+}
+
+.intro-bg{
+position:absolute;
+inset:0;
+overflow:hidden;
+}
+
+.intro-orb{
+position:absolute;
+width:420px;
+height:420px;
+border-radius:50%;
+background:radial-gradient(circle,
+rgba(255,255,255,.10),
+transparent 70%);
+filter:blur(30px);
+animation:introFloat 8s infinite alternate ease-in-out;
+}
+
+.intro-orb.a{
+top:-180px;
+left:-150px;
+}
+
+.intro-orb.b{
+right:-160px;
+bottom:-180px;
+animation-delay:-4s;
+}
+
+@keyframes introFloat{
+to{
+transform:translate(100px,70px) scale(1.2);
+}
+}
+
+.login-card{
+position:relative;
+z-index:2;
+width:min(440px,100%);
+padding:45px 35px;
+border:1px solid rgba(255,255,255,.12);
+background:rgba(15,15,15,.72);
+backdrop-filter:blur(30px);
+box-shadow:0 40px 120px rgba(0,0,0,.5);
+text-align:center;
+}
+
+.login-logo{
+font-size:13px;
+letter-spacing:7px;
+font-weight:700;
+margin-bottom:55px;
+}
+
+.login-title{
+font-family:"Playfair Display",serif;
+font-size:clamp(42px,10vw,70px);
+line-height:.9;
+font-weight:500;
+margin-bottom:18px;
+}
+
+.login-title span{
+color:#666;
+}
+
+.login-sub{
+color:#888;
+font-size:12px;
+line-height:1.8;
+margin-bottom:35px;
+}
+
+.login-step{
+display:none;
+}
+
+.login-step.active{
+display:block;
+animation:stepIn .6s ease;
+}
+
+@keyframes stepIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:none;
+}
+}
+
+.phone-input{
+width:100%;
+height:58px;
+background:#0b0b0b;
+border:1px solid rgba(255,255,255,.14);
+color:#fff;
+padding:0 18px;
+outline:none;
+text-align:center;
+font-size:15px;
+letter-spacing:1px;
+transition:.3s;
+}
+
+.phone-input:focus{
+border-color:#fff;
+box-shadow:0 0 30px rgba(255,255,255,.05);
+}
+
+.primary-login{
+width:100%;
+height:58px;
+margin-top:12px;
+border:0;
+background:#fff;
+color:#050505;
+cursor:pointer;
+font-size:10px;
+letter-spacing:3px;
+text-transform:uppercase;
+transition:.4s;
+}
+
+.primary-login:hover{
+transform:translateY(-4px);
+box-shadow:0 15px 40px rgba(255,255,255,.12);
+}
+
+.otp-title{
+font-size:11px;
+color:#999;
+margin-bottom:20px;
+}
+
+.otp-boxes{
+display:flex;
+justify-content:center;
+gap:8px;
+direction:ltr;
+}
+
+.otp{
+width:48px;
+height:58px;
+border:1px solid rgba(255,255,255,.15);
+background:#0b0b0b;
+color:#fff;
+text-align:center;
+font-size:22px;
+outline:none;
+}
+
+.otp:focus{
+border-color:#fff;
+}
+
+.demo-code{
+margin-top:18px;
+font-size:11px;
+color:#777;
+}
+
+.demo-code strong{
+color:#fff;
+letter-spacing:3px;
+}
+
+.login-error{
+margin-top:15px;
+font-size:11px;
+color:#ff7777;
+min-height:16px;
+}
+
+.back-btn{
+margin-top:20px;
+background:none;
+border:0;
+color:#777;
+cursor:pointer;
+font-size:11px;
+}
+
+.face-screen{
+display:none;
+position:fixed;
+inset:0;
+z-index:9000;
+background:rgba(0,0,0,.96);
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+
+.face-screen.active{
+display:flex;
+}
+
+.face-container{
+width:min(700px,100%);
+text-align:center;
+}
+
+.face-header{
+margin-bottom:25px;
+}
+
+.face-header small{
+color:#777;
+letter-spacing:3px;
+font-size:9px;
+}
+
+.face-header h2{
+font-family:"Playfair Display",serif;
+font-size:clamp(38px,8vw,65px);
+font-weight:500;
+margin-top:10px;
+}
+
+.camera-box{
+position:relative;
+width:min(560px,100%);
+margin:auto;
+aspect-ratio:4/3;
+background:#080808;
+border:1px solid rgba(255,255,255,.15);
+overflow:hidden;
+}
+
+#faceVideo{
+width:100%;
+height:100%;
+object-fit:cover;
+transform:scaleX(-1);
+}
+
+.face-frame{
+position:absolute;
+width:55%;
+height:70%;
+left:22.5%;
+top:15%;
+border:1px solid rgba(255,255,255,.7);
+box-shadow:
+0 0 0 999px rgba(0,0,0,.15),
+inset 0 0 40px rgba(255,255,255,.04);
+pointer-events:none;
+}
+
+.scan-line{
+position:absolute;
+left:22.5%;
+width:55%;
+height:1px;
+background:#fff;
+box-shadow:0 0 15px #fff;
+animation:scan 2.5s infinite ease-in-out;
+}
+
+@keyframes scan{
+0%,100%{
+top:15%;
+opacity:.2;
+}
+50%{
+top:85%;
+opacity:1;
+}
+}
+
+.face-status{
+margin-top:20px;
+color:#888;
+font-size:12px;
+min-height:20px;
+}
+
+.analysis-card{
+display:none;
+margin:25px auto 0;
+width:min(560px,100%);
+padding:25px;
+background:#0f0f0f;
+border:1px solid rgba(255,255,255,.12);
+text-align:left;
+}
+
+.analysis-card.show{
+display:block;
+animation:stepIn .7s ease;
+}
+
+.analysis-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.analysis-name{
+font-family:"Playfair Display",serif;
+font-size:34px;
+}
+
+.verified{
+font-size:9px;
+letter-spacing:2px;
+padding:8px 12px;
+border:1px solid rgba(255,255,255,.2);
+}
+
+.analysis-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.analysis-item{
+padding:15px;
+background:#151515;
+border:1px solid rgba(255,255,255,.06);
+}
+
+.analysis-item span{
+display:block;
+font-size:9px;
+color:#777;
+margin-bottom:7px;
+text-transform:uppercase;
+letter-spacing:1px;
+}
+
+.analysis-item strong{
+font-size:12px;
+}
+
+.enter-site{
+margin-top:20px;
+padding:14px 25px;
+background:#fff;
+color:#000;
+border:0;
+cursor:pointer;
+font-size:10px;
+letter-spacing:2px;
+text-transform:uppercase;
+}
+
+
+/* =========================
+BACKGROUND
+========================= */
+
+.background{
+position:fixed;
+inset:0;
+z-index:-5;
+overflow:hidden;
+}
+
+.orb{
+position:absolute;
+width:500px;
+height:500px;
+border-radius:50%;
+background:
+radial-gradient(circle,
+rgba(255,255,255,.08),
+transparent 70%);
+filter:blur(25px);
+animation:float 13s infinite alternate ease-in-out;
+}
+
+.orb.one{
+top:-250px;
+left:-150px;
+}
+
+.orb.two{
+right:-200px;
+bottom:-180px;
+animation-delay:-6s;
+}
+
+@keyframes float{
+to{
+transform:translate(100px,70px) scale(1.2);
+}
+}
+
+.noise{
+position:fixed;
+inset:0;
+z-index:9998;
+pointer-events:none;
+opacity:.035;
+background-image:
+url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+
+/* =========================
+MUSIC
+========================= */
+
+.music{
+position:fixed;
+bottom:25px;
+right:25px;
+z-index:5000;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.music button{
+width:55px;
+height:55px;
+border-radius:50%;
+border:1px solid var(--border);
+background:rgba(20,20,20,.7);
+backdrop-filter:blur(15px);
+color:var(--text);
+cursor:pointer;
+transition:.4s;
+}
+
+.music button:hover{
+transform:translateY(-5px) scale(1.05);
+background:var(--text);
+color:var(--bg);
+}
+
+.music-bars{
+display:flex;
+gap:3px;
+align-items:end;
+height:20px;
+}
+
+.music-bars span{
+width:3px;
+height:7px;
+background:var(--text);
+animation:bars .8s infinite ease-in-out;
+}
+
+.music-bars span:nth-child(2){
+animation-delay:.15s;
+}
+
+.music-bars span:nth-child(3){
+animation-delay:.3s;
+}
+
+.music-bars span:nth-child(4){
+animation-delay:.45s;
+}
+
+.music.paused .music-bars span{
+animation-play-state:paused;
+height:4px;
+}
+
+@keyframes bars{
+50%{height:20px;}
+}
+
+
+/* =========================
+HEADER
+========================= */
+
+header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:1000;
+padding:22px 6vw;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(7,7,7,.55);
+backdrop-filter:blur(20px);
+border-bottom:1px solid var(--border);
+}
+
+body.light header{
+background:rgba(244,244,241,.65);
+}
+
+.logo{
+font-weight:700;
+letter-spacing:4px;
+}
+
+.header-actions{
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+.icon-btn{
+width:42px;
+height:42px;
+border-radius:50%;
+border:1px solid var(--border);
+background:transparent;
+color:var(--text);
+cursor:pointer;
+transition:.3s;
+}
+
+.icon-btn:hover{
+background:var(--text);
+color:var(--bg);
+}
+
+
+/* =========================
+HERO
+========================= */
+
+.hero{
+min-height:100vh;
+padding:170px 8vw 100px;
+display:flex;
+align-items:center;
+}
+
+.hero-grid{
+width:100%;
+display:grid;
+grid-template-columns:1.25fr .75fr;
+gap:80px;
+align-items:center;
+}
+
+.eyebrow{
+font-size:10px;
+letter-spacing:5px;
+color:var(--muted);
+text-transform:uppercase;
+margin-bottom:30px;
+}
+
+.hero h1{
+font-family:"Playfair Display",serif;
+font-size:clamp(70px,11vw,165px);
+font-weight:500;
+line-height:.8;
+letter-spacing:-7px;
+}
+
+.hero h1 .outline{
+color:transparent;
+-webkit-text-stroke:1px var(--muted);
+}
+
+.hero-text{
+max-width:650px;
+margin-top:50px;
+font-size:15px;
+line-height:2;
+color:var(--muted);
+}
+
+.hero-text strong{
+color:var(--text);
+}
+
+.hero-btns{
+display:flex;
+gap:12px;
+margin-top:35px;
+flex-wrap:wrap;
+}
+
+.main-btn{
+padding:17px 25px;
+background:var(--text);
+color:var(--bg);
+font-size:10px;
+letter-spacing:2px;
+text-transform:uppercase;
+transition:.4s;
+}
+
+.main-btn:hover{
+transform:translateY(-5px);
+}
+
+.outline-btn{
+padding:16px 25px;
+border:1px solid var(--border);
+font-size:10px;
+letter-spacing:2px;
+text-transform:uppercase;
+}
+
+.hero-image{
+position:relative;
+width:100%;
+max-width:440px;
+margin:auto;
+transform:rotate(3deg);
+transition:.7s;
+}
+
+.hero-image:hover{
+transform:rotate(0) translateY(-10px);
+}
+
+.hero-image img{
+width:100%;
+display:block;
+aspect-ratio:4/5;
+object-fit:cover;
+filter:grayscale(100%) contrast(1.1);
+}
+
+.hero-image:before{
+content:"";
+position:absolute;
+inset:20px;
+border:1px solid rgba(255,255,255,.3);
+z-index:2;
+pointer-events:none;
+}
+
+.hero-image-caption{
+position:absolute;
+bottom:25px;
+left:25px;
+z-index:3;
+font-size:10px;
+letter-spacing:3px;
+text-transform:uppercase;
+}
+
+
+/* =========================
+GENERAL
+========================= */
+
+.marquee{
+overflow:hidden;
+border-top:1px solid var(--border);
+border-bottom:1px solid var(--border);
+padding:22px 0;
+white-space:nowrap;
+}
+
+.marquee-track{
+display:inline-flex;
+animation:marquee 22s linear infinite;
+}
+
+.marquee span{
+margin:0 30px;
+font-family:"Playfair Display",serif;
+font-size:30px;
+color:var(--muted2);
+}
+
+.marquee .dot{
+color:var(--text);
+}
+
+@keyframes marquee{
+to{
+transform:translateX(-50%);
+}
+}
+
+section{
+padding:150px 8vw;
+}
+
+.section-top{
+display:flex;
+justify-content:space-between;
+align-items:end;
+margin-bottom:70px;
+}
+
+.number{
+font-size:10px;
+letter-spacing:4px;
+color:var(--muted);
+}
+
+.section-title{
+font-family:"Playfair Display",serif;
+font-size:clamp(55px,8vw,110px);
+font-weight:500;
+line-height:.9;
+letter-spacing:-5px;
+}
+
+.section-title span{
+color:var(--muted2);
+}
+
+
+/* ABOUT */
+
+.about{
+display:grid;
+grid-template-columns:.8fr 1.2fr;
+gap:100px;
+}
+
+.quote{
+font-family:"Playfair Display",serif;
+font-size:clamp(35px,4vw,60px);
+line-height:1.05;
+}
+
+.quote span{
+color:var(--muted2);
+}
+
+.about-text{
+max-width:680px;
+color:var(--muted);
+line-height:2;
+font-size:14px;
+}
+
+.about-text p{
+margin-bottom:25px;
+}
+
+
+/* STATEMENT */
+
+.statement{
+border-top:1px solid var(--border);
+border-bottom:1px solid var(--border);
+padding:100px 0;
+text-align:center;
+}
+
+.statement-text{
+font-family:"Playfair Display",serif;
+font-size:clamp(35px,6vw,80px);
+line-height:1;
+max-width:1100px;
+margin:auto;
+}
+
+.statement-text em{
+color:var(--muted);
+}
+
+
+/* GALLERY */
+
+.gallery{
+display:grid;
+grid-template-columns:1.3fr .7fr;
+gap:20px;
+}
+
+.gallery-column{
+display:grid;
+gap:20px;
+}
+
+.gallery img{
+width:100%;
+height:100%;
+object-fit:cover;
+filter:grayscale(100%);
+transition:.7s;
+}
+
+.gallery-item{
+overflow:hidden;
+background:var(--surface);
+border:1px solid var(--border);
+min-height:300px;
+}
+
+.gallery img:hover{
+filter:grayscale(0%);
+transform:scale(1.04);
+}
+
+
+/* SKILLS */
+
+.skills{
+border-top:1px solid var(--border);
+}
+
+.skill{
+display:grid;
+grid-template-columns:70px 1fr auto;
+padding:34px 0;
+border-bottom:1px solid var(--border);
+align-items:center;
+transition:.4s;
+}
+
+.skill:hover{
+padding-left:20px;
+}
+
+.skill-num{
+font-size:11px;
+color:var(--muted2);
+}
+
+.skill-name{
+font-family:"Playfair Display",serif;
+font-size:clamp(27px,3vw,42px);
+}
+
+.skill-level{
+font-size:10px;
+letter-spacing:2px;
+color:var(--muted);
+}
+
+
+/* TECH */
+
+.tech-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+}
+
+.tech{
+border:1px solid var(--border);
+background:var(--surface);
+padding:30px;
+min-height:150px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+transition:.4s;
+}
+
+.tech:hover{
+transform:translateY(-8px);
+background:var(--surface2);
+}
+
+.tech i{
+font-size:28px;
+}
+
+.tech-name{
+font-family:"Playfair Display",serif;
+font-size:25px;
+}
+
+
+/* JOURNEY */
+
+.journey{
+border-top:1px solid var(--border);
+}
+
+.journey-item{
+display:grid;
+grid-template-columns:150px 1fr;
+padding:40px 0;
+border-bottom:1px solid var(--border);
+}
+
+.journey-year{
+color:var(--muted);
+font-size:12px;
+}
+
+.journey-title{
+font-family:"Playfair Display",serif;
+font-size:35px;
+margin-bottom:12px;
+}
+
+.journey-text{
+max-width:700px;
+color:var(--muted);
+line-height:1.9;
+font-size:13px;
+}
+
+
+/* SERVICES */
+
+.services{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.service{
+min-height:350px;
+padding:35px;
+background:var(--surface);
+border:1px solid var(--border);
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+transition:.5s;
+}
+
+.service:hover{
+transform:translateY(-10px);
+}
+
+.service-number{
+color:var(--muted2);
+}
+
+.service h3{
+font-family:"Playfair Display",serif;
+font-size:42px;
+}
+
+.service p{
+color:var(--muted);
+font-size:13px;
+line-height:1.8;
+}
+
+
+/* WORK */
+
+.work-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+.work{
+min-height:460px;
+padding:35px;
+background:var(--surface);
+border:1px solid var(--border);
+position:relative;
+overflow:hidden;
+display:flex;
+flex-direction:column;
+justify-content:flex-end;
+transition:.5s;
+}
+
+.work:hover{
+transform:translateY(-10px);
+}
+
+.work-image{
+position:absolute;
+inset:0;
+opacity:.3;
+transition:.5s;
+}
+
+.work-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+filter:grayscale(100%);
+}
+
+.work:hover .work-image{
+opacity:.5;
+transform:scale(1.04);
+}
+
+.work-content{
+position:relative;
+z-index:2;
+}
+
+.work-number{
+position:absolute;
+top:30px;
+right:30px;
+color:var(--muted);
+z-index:3;
+}
+
+.work-type{
+font-size:9px;
+letter-spacing:3px;
+color:var(--muted);
+text-transform:uppercase;
+}
+
+.work h3{
+font-family:"Playfair Display",serif;
+font-size:60px;
+font-weight:500;
+margin-top:10px;
+}
+
+.work p{
+color:var(--muted);
+font-size:12px;
+margin-top:10px;
+}
+
+
+/* CONTACT */
+
+.contact{
+min-height:90vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+}
+
+.contact-title{
+font-family:"Playfair Display",serif;
+font-size:clamp(65px,12vw,165px);
+font-weight:500;
+line-height:.8;
+letter-spacing:-7px;
+}
+
+.contact-title span{
+color:var(--muted2);
+}
+
+.contact-sub{
+max-width:600px;
+margin:35px auto 0;
+color:var(--muted);
+line-height:1.8;
+}
+
+.socials{
+display:flex;
+justify-content:center;
+gap:12px;
+margin-top:45px;
+}
+
+.social{
+width:58px;
+height:58px;
+border-radius:50%;
+border:1px solid var(--border);
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.4s;
+}
+
+.social:hover{
+background:var(--text);
+color:var(--bg);
+transform:translateY(-7px);
+}
+
+
+/* FOOTER */
+
+footer{
+border-top:1px solid var(--border);
+padding:30px 8vw;
+display:flex;
+justify-content:space-between;
+color:var(--muted);
+font-size:10px;
+}
+
+
+/* REVEAL */
+
+.reveal{
+opacity:0;
+transform:translateY(60px);
+transition:1s cubic-bezier(.16,1,.3,1);
+}
+
+.reveal.show{
+opacity:1;
+transform:none;
+}
+
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:850px){
+
+header{
+padding:18px 5vw;
+}
+
+.hero{
+padding:140px 6vw 80px;
+}
+
+.hero-grid{
+grid-template-columns:1fr;
+gap:50px;
+}
+
+.hero h1{
+font-size:clamp(65px,17vw,105px);
+letter-spacing:-5px;
+}
+
+.hero-image{
+margin-top:20px;
+max-width:330px;
+}
+
+.about{
+grid-template-columns:1fr;
+gap:50px;
+}
+
+.gallery{
+grid-template-columns:1fr;
+}
+
+.tech-grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.services{
+grid-template-columns:1fr;
+}
+
+.work-grid{
+grid-template-columns:1fr;
+}
+
+.work{
+min-height:370px;
+}
+
+.skill{
+grid-template-columns:45px 1fr;
+}
+
+.skill-level{
+display:none;
+}
+
+.journey-item{
+grid-template-columns:1fr;
+gap:15px;
+}
+
+footer{
+flex-direction:column;
+gap:10px;
+}
+
+.music{
+bottom:15px;
+right:15px;
+}
+
+.login-card{
+padding:35px 22px;
+}
+
+.otp{
+width:43px;
+height:52px;
+}
+
+.analysis-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.face-container{
+padding:0 5px;
+}
+
+}
+
+@media(max-width:400px){
+
+.otp{
+width:39px;
+height:50px;
+}
+
+.analysis-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+
+/* RTL */
+
+html[dir="rtl"] .hero h1,
+html[dir="rtl"] .section-title,
+html[dir="rtl"] .contact-title{
+letter-spacing:0;
+}
+
+html[dir="rtl"] .skill:hover{
+padding-left:0;
+padding-right:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN / OTP
+===================================================== -->
+
+<div id="intro">
+
+<div class="intro-bg">
+<div class="intro-orb a"></div>
+<div class="intro-orb b"></div>
+</div>
+
+<div class="login-card">
+
+<div class="login-logo">
+MM.
+</div>
+
+
+<!-- STEP 1 -->
+
+<div
+class="login-step active"
+id="phoneStep">
+
+<div class="login-title">
+Welcome<br>
+<span>to MM.</span>
+</div>
+
+<div class="login-sub">
+Enter your mobile number to enter the digital space.
+</div>
+
+<input
+id="phoneInput"
+class="phone-input"
+type="tel"
+inputmode="tel"
+placeholder="+98 901 234 5678"
+autocomplete="tel">
+
+<button
+class="primary-login"
+id="sendOtpBtn">
+
+Continue
+
+</button>
+
+<div
+class="login-error"
+id="phoneError">
+</div>
+
+</div>
+
+
+<!-- STEP 2 -->
+
+<div
+class="login-step"
+id="otpStep">
+
+<div class="login-title">
+Verify<br>
+<span>identity.</span>
+</div>
+
+<div class="otp-title">
+Enter the 6-digit verification code
+</div>
+
+<div class="otp-boxes">
+
+<input class="otp" maxlength="1" inputmode="numeric">
+<input class="otp" maxlength="1" inputmode="numeric">
+<input class="otp" maxlength="1" inputmode="numeric">
+<input class="otp" maxlength="1" inputmode="numeric">
+<input class="otp" maxlength="1" inputmode="numeric">
+<input class="otp" maxlength="1" inputmode="numeric">
+
+</div>
+
+<div class="demo-code">
+Demo OTP:
+<strong id="demoOtp">------</strong>
+</div>
+
+<div
+class="login-error"
+id="otpError">
+</div>
+
+<button
+class="primary-login"
+id="verifyOtpBtn">
+
+Verify
+
+</button>
+
+<button
+class="back-btn"
+id="backPhone">
+
+← Change number
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     FACE VERIFICATION
+===================================================== -->
+
+<div
+class="face-screen"
+id="faceScreen">
+
+<div class="face-container">
+
+<div class="face-header">
+
+<small>
+BIOMETRIC VERIFICATION
+</small>
+
+<h2 id="faceTitle">
+Verify your face.
+</h2>
+
+</div>
+
+
+<div class="camera-box">
+
+<video
+id="faceVideo"
+autoplay
+muted
+playsinline>
+</video>
+
+<div class="face-frame"></div>
+
+<div class="scan-line"></div>
+
+</div>
+
+
+<div
+class="face-status"
+id="faceStatus">
+
+Preparing camera...
+
+</div>
+
+
+<div
+class="analysis-card"
+id="analysisCard">
+
+<div class="analysis-head">
+
+<div
+class="analysis-name"
+id="analysisName">
+Milad
+</div>
+
+<div class="verified">
+VERIFIED
+</div>
+
+</div>
+
+<div class="analysis-grid">
+
+<div class="analysis-item">
+
+<span>Identity</span>
+
+<strong id="analysisIdentity">
+Milad
+</strong>
+
+</div>
+
+<div class="analysis-item">
+
+<span>Phone</span>
+
+<strong id="analysisPhone">
++98
+</strong>
+
+</div>
+
+<div class="analysis-item">
+
+<span>Face</span>
+
+<strong id="analysisFace">
+Detected
+</strong>
+
+</div>
+
+<div class="analysis-item">
+
+<span>Confidence</span>
+
+<strong id="analysisConfidence">
+High
+</strong>
+
+</div>
+
+<div class="analysis-item">
+
+<span>Camera</span>
+
+<strong>
+Active
+</strong>
+
+</div>
+
+<div class="analysis-item">
+
+<span>Status</span>
+
+<strong>
+Verified
+</strong>
+
+</div>
+
+</div>
+
+<button
+class="enter-site"
+id="enterSiteBtn">
+
+Enter website
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN SITE
+===================================================== -->
+
+<div class="background">
+
+<div class="orb one"></div>
+<div class="orb two"></div>
+
+</div>
+
+<div class="noise"></div>
+
+
+<!-- MUSIC -->
+
+<audio
+id="bgMusic"
+loop
+preload="auto">
+
+<source src="mahdi.mp3" type="audio/mpeg">
+
+</audio>
+
+<div
+class="music paused"
+id="musicBox">
+
+<div class="music-bars">
+
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
+<button id="musicBtn">
+
+<i class="fa-solid fa-play"></i>
+
+</button>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header>
+
+<a href="#" class="logo">
+MM.
+</a>
+
+<div class="header-actions">
+
+<button
+class="icon-btn"
+id="languageBtn">
+
+EN
+
+</button>
+
+<button
+class="icon-btn"
+id="themeBtn">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+</div>
+
+</header>
+
+
+<main>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-grid">
+
+<div>
+
+<div
+class="eyebrow"
+data-en="Programmer · Developer · Creator"
+data-fa="برنامه‌نویس · توسعه‌دهنده · خالق">
+
+Programmer · Developer · Creator
+
+</div>
+
+<h1>
+Mahdi<br>
+
+<span class="outline">
+Maramzi
+</span>
+
+</h1>
+
+<p
+class="hero-text"
+data-en="I build digital experiences with clean code, bold ideas and a strong sense of identity. My goal is simple: create websites that feel alive, communicate clearly and stay in people's minds."
+data-fa="من تجربه‌های دیجیتال را با کدنویسی تمیز، ایده‌های متفاوت و هویت بصری قوی می‌سازم. هدفم ساده است؛ ساخت وب‌سایت‌هایی که زنده باشند، درست ارتباط برقرار کنند و در ذهن بمانند.">
+
+I build digital experiences with clean code, bold ideas and a strong sense of identity.
+
+</p>
+
+<div class="hero-btns">
+
+<a
+href="#work"
+class="main-btn"
+data-en="Explore my work"
+data-fa="دیدن نمونه‌کارها">
+
+Explore my work
+
+</a>
+
+<a
+href="#contact"
+class="outline-btn"
+data-en="Let's talk"
+data-fa="شروع همکاری">
+
+Let's talk
+
+</a>
+
+</div>
+
+</div>
+
+
+<div>
+
+<div class="hero-image">
+
+<img
+src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=85"
+alt="Creative workspace">
+
+<div class="hero-image-caption">
+MM / 2026
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MARQUEE -->
+
+<div class="marquee">
+
+<div class="marquee-track">
+
+<span>CODE</span>
+<span class="dot">✦</span>
+<span>CREATE</span>
+<span class="dot">✦</span>
+<span>DESIGN</span>
+<span class="dot">✦</span>
+<span>BUILD</span>
+<span class="dot">✦</span>
+<span>IDENTITY</span>
+<span class="dot">✦</span>
+
+<span>CODE</span>
+<span class="dot">✦</span>
+<span>CREATE</span>
+<span class="dot">✦</span>
+<span>DESIGN</span>
+<span class="dot">✦</span>
+<span>BUILD</span>
+<span class="dot">✦</span>
+<span>IDENTITY</span>
+<span class="dot">✦</span>
+
+</div>
+
+</div>
+
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<div class="section-top reveal">
+
+<div class="number">
+01 / ABOUT
+</div>
+
+<h2
+class="section-title"
+data-en="Who I am."
+data-fa="من کی هستم.">
+
+Who <span>I am.</span>
+
+</h2>
+
+</div>
+
+
+<div class="about reveal">
+
+<div
+class="quote"
+data-en="I don't just write code. I create experiences."
+data-fa="من فقط کد نمی‌نویسم؛ تجربه خلق می‌کنم.">
+
+I don't just write code.
+
+<span>
+I create experiences.
+</span>
+
+</div>
+
+
+<div class="about-text">
+
+<p
+data-en="I'm Mahdi Maramzi, a programmer and digital creator interested in modern web experiences, creative interfaces and digital products."
+data-fa="من مهدی مرمزی هستم؛ برنامه‌نویس و خالق دیجیتال که به تجربه‌های مدرن وب، رابط‌های خلاقانه و محصولات دیجیتال علاقه دارد.">
+
+I'm Mahdi Maramzi, a programmer and digital creator interested in modern web experiences, creative interfaces and digital products.
+
+</p>
+
+<p
+data-en="For me, programming is more than writing lines of code. It is a way to turn an idea into something real, useful and memorable."
+data-fa="برای من برنامه‌نویسی فقط نوشتن خطوط کد نیست؛ راهی است برای تبدیل یک ایده به چیزی واقعی، کاربردی و ماندگار.">
+
+For me, programming is more than writing lines of code.
+
+</p>
+
+<p
+data-en="I care about the small details: typography, movement, structure, speed and the feeling a person gets when they first open a website."
+data-fa="به جزئیات کوچک اهمیت می‌دهم؛ تایپوگرافی، حرکت، ساختار، سرعت و حسی که کاربر هنگام اولین ورود به یک سایت دریافت می‌کند.">
+
+I care about the small details.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STATEMENT -->
+
+<section>
+
+<div class="statement reveal">
+
+<div
+class="statement-text"
+data-en="Build something that looks good. Then build something that means something."
+data-fa="چیزی بساز که زیبا باشد؛ بعد چیزی بساز که معنا داشته باشد.">
+
+Build something that
+<em>looks good.</em>
+Then build something that
+<em>means something.</em>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- GALLERY -->
+
+<section>
+
+<div class="section-top reveal">
+
+<div class="number">
+02 / VISUALS
+</div>
+
+<h2
+class="section-title"
+data-en="My visual world."
+data-fa="دنیای من.">
+
+My <span>visual world.</span>
+
+</h2>
+
+</div>
+
+
+<div class="gallery reveal">
+
+<div class="gallery-item">
+
+<img
+src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=85"
+alt="Code">
+
+</div>
+
+<div class="gallery-column">
+
+<div class="gallery-item">
+
+<img
+src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=85"
+alt="Development">
+
+</div>
+
+<div class="gallery-item">
+
+<img
+src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1000&q=85"
+alt="Design">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SKILLS -->
+
+<section>
+
+<div class="section-top reveal">
+
+<div class="number">
+03 / SKILLS
+</div>
+
+<h2
+class="section-title"
+data-en="What I build."
+data-fa="چه می‌سازم.">
+
+What <span>I build.</span>
+
+</h2>
+
+</div>
+
+
+<div class="skills reveal">
+
+<div class="skill">
+<div class="skill-num">01</div>
+
+<div
+class="skill-name"
+data-en="Web Development"
+data-fa="توسعه وب">
+
+Web Development
+
+</div>
+
+<div class="skill-level">
+FOCUS
+</div>
+</div>
+
+
+<div class="skill">
+<div class="skill-num">02</div>
+
+<div
+class="skill-name"
+data-en="Creative UI / UX"
+data-fa="طراحی رابط کاربری">
+
+Creative UI / UX
+
+</div>
+
+<div class="skill-level">
+FOCUS
+</div>
+</div>
+
+
+<div class="skill">
+<div class="skill-num">03</div>
+
+<div
+class="skill-name"
+data-en="Interactive Websites"
+data-fa="وب‌سایت‌های تعاملی">
+
+Interactive Websites
+
+</div>
+
+<div class="skill-level">
+FOCUS
+</div>
+</div>
+
+
+<div class="skill">
+<div class="skill-num">04</div>
+
+<div
+class="skill-name"
+data-en="Freelance Projects"
+data-fa="پروژه‌های فریلنسری">
+
+Freelance Projects
+
+</div>
+
+<div class="skill-level">
+FOCUS
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TECHNOLOGY -->
+
+<section>
+
+<div class="section-top reveal">
+
+<div class="number">
+04 / TOOLBOX
+</div>
+
+<h2
+class="section-title"
+data-en="My toolbox."
+data-fa="ابزارهای من.">
+
+My <span>toolbox.</span>
+
+</h2>
+
+</div>
+
+
+<div class="tech-grid reveal">
+
+<div class="tech">
+<i class="fa-brands fa-html5"></i>
+<div class="tech-name">HTML5</div>
+</div>
+
+<div class="tech">
+<i class="fa-brands fa-css3-alt"></i>
+<div class="tech-name">CSS3</div>
+</div>
+
+<div class="tech">
+<i class="fa-brands fa-js"></i>
+<div class="tech-name">JavaScript</div>
+</div>
+
+<div class="tech">
+<i class="fa-brands fa-php"></i>
+<div class="tech-name">PHP</div>
+</div>
+
+<div class="tech">
+<i class="fa-brands fa-github"></i>
+<div class="tech-name">GitHub</div>
+</div>
+
+<div class="tech">
+<i class="fa-solid fa-database"></i>
+<div class="tech-name">Database</div>
+</div>
+
+<div class="tech">
+<i class="fa-solid fa-mobile-screen"></i>
+<div class="tech-name">Responsive</div>
+</div>
+
+<div class="tech">
+<i class="fa-solid fa-bolt"></i>
+<div class="tech-name">Performance</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- JOURNEY -->
+
+<section>
+
+<div class="section-top reveal">
+
+<div class="number">
+05 / JOURNEY
+</div>
+
+<h2
+class="section-title"
+data-en="The journey."
+data-fa="مسیر من.">
+
+The <span>journey.</span>
+
+</h2>
+
+</div>
+
+
+<div class="journey reveal">
+
+<div class="journey-item">
+
+<div class="journey-year">
+01 / START
+</div>
+
+<div>
+
+<div
+class="journey-title"
+data-en="Curiosity became code."
+data-fa="کنجکاوی تبدیل به کد شد.">
+
+Curiosity became code.
+
+</div>
+
+<div
+class="journey-text"
+data-en="It started with curiosity: understanding how websites work, breaking things, rebuilding them and slowly discovering the world behind the screen."
+data-fa="همه‌چیز با کنجکاوی شروع شد؛ اینکه سایت‌ها چطور کار می‌کنند، خراب کردن، دوباره ساختن و کم‌کم کشف کردن دنیایی که پشت صفحه نمایش قرار دارد.">
+
+It started with curiosity.
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="journey-item">
+
+<div class="journey-year">
+02 / BUILD
+</div>
+
+<div>
+
+<div
+class="journey-title"
+data-en="Learning by building."
+data-fa="یادگیری با ساختن.">
+
+Learning by building.
+
+</div>
+
+<div
+class="journey-text"
+data-en="Instead of only learning theory, I wanted to create real things: websites, experiments, interfaces and digital tools."
+data-fa="به جای اینکه فقط تئوری یاد بگیرم، تصمیم گرفتم چیزهای واقعی بسازم؛ سایت، آزمایش، رابط کاربری و ابزارهای دیجیتال.">
+
+Instead of only learning theory, I wanted to create real things.
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="journey-item">
+
+<div class="journey-year">
+03 / NOW
+</div>
+
+<div>
+
+<div
+class="journey-title"
+data-en="Building a name."
+data-fa="ساختن یک نام.">
+
+Building a name.
+
+</div>
+
+<div
+class="journey-text"
+data-en="Today I want every project to become part of a larger identity: work that represents quality, creativity and my own way of thinking."
+data-fa="امروز می‌خواهم هر پروژه بخشی از یک هویت بزرگ‌تر باشد؛ کاری که کیفیت، خلاقیت و طرز فکر خودم را نشان دهد.">
+
+Today I want every project to become part of a larger identity.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section>
+
+<div class="section-top reveal">
+
+<div class="number">
+06 / SERVICES
+</div>
+
+<h2
+class="section-title"
+data-en="What I offer."
+data-fa="چه کاری انجام می‌دهم.">
+
+What <span>I offer.</span>
+
+</h2>
+
+</div>
+
+
+<div class="services reveal">
+
+<div class="service">
+
+<div class="service-number">
+01
+</div>
+
+<h3
+data-en="Websites"
+data-fa="وب‌سایت">
+
+Websites
+
+</h3>
+
+<p
+data-en="Modern responsive websites designed around your identity, goals and audience."
+data-fa="وب‌سایت‌های مدرن و واکنش‌گرا بر اساس هویت، هدف و مخاطب شما.">
+
+Modern responsive websites designed around your identity, goals and audience.
+
+</p>
+
+</div>
+
+
+<div class="service">
+
+<div class="service-number">
+02
+</div>
+
+<h3
+data-en="Landing Pages"
+data-fa="لندینگ پیج">
+
+Landing Pages
+
+</h3>
+
+<p
+data-en="Focused pages designed to introduce a product, service or personal brand."
+data-fa="صفحه‌های حرفه‌ای برای معرفی محصول، خدمات یا برند شخصی.">
+
+Focused pages designed to introduce a product, service or personal brand.
+
+</p>
+
+</div>
+
+
+<div class="service">
+
+<div class="service-number">
+03
+</div>
+
+<h3
+data-en="Digital Identity"
+data-fa="هویت دیجیتال">
+
+Digital Identity
+
+</h3>
+
+<p
+data-en="A complete digital presence that makes your work look credible and memorable."
+data-fa="یک حضور دیجیتال کامل که باعث می‌شود کار شما حرفه‌ای، معتبر و ماندگار دیده شود.">
+
+A complete digital presence that makes your work look credible and memorable.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- WORK -->
+
+<section id="work">
+
+<div class="section-top reveal">
+
+<div class="number">
+07 / SELECTED WORK
+</div>
+
+<h2
+class="section-title"
+data-en="Selected work."
+data-fa="نمونه‌کارها.">
+
+Selected <span>work.</span>
+
+</h2>
+
+</div>
+
+
+<div class="work-grid reveal">
+
+<article class="work">
+
+<div class="work-image">
+
+<img
+src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85"
+alt="AGEX">
+
+</div>
+
+<div class="work-number">
+01
+</div>
+
+<div class="work-content">
+
+<div class="work-type">
+WEB APPLICATION
+</div>
+
+<h3>
+AGEX
+</h3>
+
+<p
+data-en="A smart digital calculator experience."
+data-fa="یک تجربه دیجیتال هوشمند برای محاسبات.">
+
+A smart digital calculator experience.
+
+</p>
+
+</div>
+
+</article>
+
+
+<article class="work">
+
+<div class="work-image">
+
+<img
+src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=85"
+alt="Portfolio">
+
+</div>
+
+<div class="work-number">
+02
+</div>
+
+<div class="work-content">
+
+<div class="work-type">
+PERSONAL BRAND
+</div>
+
+<h3>
+MM.
+</h3>
+
+<p
+data-en="A personal digital identity built around simplicity."
+data-fa="هویت دیجیتال شخصی با تمرکز بر سادگی و اصالت.">
+
+A personal digital identity built around simplicity.
+
+</p>
+
+</div>
+
+</article>
+
+
+<article class="work">
+
+<div class="work-image">
+
+<img
+src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&q=85"
+alt="LAB">
+
+</div>
+
+<div class="work-number">
+03
+</div>
+
+<div class="work-content">
+
+<div class="work-type">
+EXPERIMENTAL
+</div>
+
+<h3>
+LAB
+</h3>
+
+<p
+data-en="Experiments in interaction, motion and interface."
+data-fa="آزمایش‌هایی در تعامل، حرکت و رابط کاربری.">
+
+Experiments in interaction, motion and interface.
+
+</p>
+
+</div>
+
+</article>
+
+
+<article class="work">
+
+<div class="work-image">
+
+<img
+src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85"
+alt="NEXT">
+
+</div>
+
+<div class="work-number">
+04
+</div>
+
+<div class="work-content">
+
+<div class="work-type">
+COMING SOON
+</div>
+
+<h3>
+NEXT
+</h3>
+
+<p
+data-en="Something new is being built."
+data-fa="یک پروژه جدید در حال ساخته شدن است.">
+
+Something new is being built.
+
+</p>
+
+</div>
+
+</article>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section
+id="contact"
+class="contact">
+
+<div class="reveal">
+
+<div class="number">
+08 / CONTACT
+</div>
+
+<h2
+class="contact-title"
+data-en="Let's build."
+data-fa="بسازیم.">
+
+Let's<br>
+
+<span>
+build.
+</span>
+
+</h2>
+
+<p
+class="contact-sub"
+data-en="Have an idea, project or business that needs a strong digital presence? Let's turn it into something people remember."
+data-fa="یک ایده، پروژه یا کسب‌وکار دارید که به حضور دیجیتال قوی نیاز دارد؟ بیایید آن را به چیزی تبدیل کنیم که در ذهن بماند.">
+
+Have an idea, project or business that needs a strong digital presence?
+
+</p>
+
+
+<div class="socials">
+
+<a
+id="instagram"
+class="social"
+target="_blank"
+rel="noopener">
+
+<i class="fa-brands fa-instagram"></i>
+
+</a>
+
+<a
+id="whatsapp"
+class="social"
+target="_blank"
+rel="noopener">
+
+<i class="fa-brands fa-whatsapp"></i>
+
+</a>
+
+<a
+id="phone"
+class="social">
+
+<i class="fa-solid fa-phone"></i>
+
+</a>
+
+<a
+id="email"
+class="social">
+
+<i class="fa-solid fa-envelope"></i>
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<div>
+© 2026 Mahdi Maramzi — All Rights Reserved.
+</div>
+
+<div>
+MM
+</div>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   CONFIG
+========================================================= */
+
+const CONFIG = {
+
+instagram:
+"https://instagram.com/lmahdi.mz",
+
+whatsapp:
+"https://wa.me/989934920508",
+
+phone:
+"tel:+989934920508",
+
+email:
+"mailto:iwmahdiprogrammer@gmail.com",
+
+/*
+خاص کردن شماره‌ها
+
+هر شماره را به اسم شخص وصل کن.
+*/
+
+privateUsers:{
+
+"+989017476479":{
+name:"Milad",
+faceVerification:true
+}
+
+}
+
+};
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+document.getElementById("instagram").href =
+CONFIG.instagram;
+
+document.getElementById("whatsapp").href =
+CONFIG.whatsapp;
+
+document.getElementById("phone").href =
+CONFIG.phone;
+
+document.getElementById("email").href =
+CONFIG.email;
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+const intro =
+document.getElementById("intro");
+
+const phoneStep =
+document.getElementById("phoneStep");
+
+const otpStep =
+document.getElementById("otpStep");
+
+const phoneInput =
+document.getElementById("phoneInput");
+
+const sendOtpBtn =
+document.getElementById("sendOtpBtn");
+
+const verifyOtpBtn =
+document.getElementById("verifyOtpBtn");
+
+const phoneError =
+document.getElementById("phoneError");
+
+const otpError =
+document.getElementById("otpError");
+
+const demoOtp =
+document.getElementById("demoOtp");
+
+const backPhone =
+document.getElementById("backPhone");
+
+const otpInputs =
+document.querySelectorAll(".otp");
+
+let generatedOTP = "";
+
+let currentPhone = "";
+
+let currentPerson = null;
+
+
+/* Normalize Iranian numbers */
+
+function normalizePhone(phone){
+
+phone =
+phone.replace(/[^\d+]/g,"");
+
+if(phone.startsWith("0098")){
+phone =
+"+98" +
+phone.substring(4);
+}
+
+if(phone.startsWith("09")){
+phone =
+"+98" +
+phone.substring(1);
+}
+
+return phone;
+
+}
+
+
+/* Random OTP */
+
+function generateOTP(){
+
+return Math.floor(
+100000 +
+Math.random()*900000
+).toString();
+
+}
+
+
+/* SEND OTP */
+
+sendOtpBtn.addEventListener(
+"click",
+()=>{
+
+phoneError.textContent="";
+
+const phone =
+normalizePhone(
+phoneInput.value.trim()
+);
+
+if(!phone){
+
+phoneError.textContent =
+"Please enter your phone number.";
+
+return;
+
+}
+
+if(phone.length < 10){
+
+phoneError.textContent =
+"Invalid phone number.";
+
+return;
+
+}
+
+currentPhone = phone;
+
+generatedOTP =
+generateOTP();
+
+demoOtp.textContent =
+generatedOTP;
+
+phoneStep.classList.remove("active");
+
+otpStep.classList.add("active");
+
+otpInputs[0].focus();
+
+}
+);
+
+
+/* OTP AUTO NEXT */
+
+otpInputs.forEach(
+(input,index)=>{
+
+input.addEventListener(
+"input",
+()=>{
+
+input.value =
+input.value.replace(/\D/g,"");
+
+if(
+input.value &&
+index <
+otpInputs.length-1
+){
+
+otpInputs[index+1].focus();
+
+}
+
+}
+);
+
+
+input.addEventListener(
+"keydown",
+e=>{
+
+if(
+e.key === "Backspace" &&
+!input.value &&
+index > 0
+){
+
+otpInputs[index-1].focus();
+
+}
+
+}
+);
+
+}
+);
+
+
+/* VERIFY OTP */
+
+verifyOtpBtn.addEventListener(
+"click",
+()=>{
+
+otpError.textContent="";
+
+let enteredOTP="";
+
+otpInputs.forEach(
+input=>{
+enteredOTP += input.value;
+}
+);
+
+if(
+enteredOTP.length !== 6
+){
+
+otpError.textContent =
+"Enter all 6 digits.";
+
+return;
+
+}
+
+if(
+enteredOTP !== generatedOTP
+){
+
+otpError.textContent =
+"Incorrect verification code.";
+
+return;
+
+}
+
+
+/*
+شماره پیدا شد
+*/
+
+currentPerson =
+CONFIG.privateUsers[currentPhone];
+
+
+/*
+اگر شماره در لیست خاص باشد
+تشخیص چهره فعال شود
+*/
+
+if(
+currentPerson &&
+currentPerson.faceVerification
+){
+
+startFaceVerification();
+
+}else{
+
+/*
+شماره عادی:
+ورود مستقیم
+*/
+
+intro.classList.add("hide");
+
+}
+
+}
+);
+
+
+/* BACK */
+
+backPhone.addEventListener(
+"click",
+()=>{
+
+otpStep.classList.remove("active");
+
+phoneStep.classList.add("active");
+
+otpInputs.forEach(
+input=>{
+input.value="";
+}
+);
+
+}
+);
+
+
+/* =========================================================
+   FACE VERIFICATION
+========================================================= */
+
+const faceScreen =
+document.getElementById("faceScreen");
+
+const faceVideo =
+document.getElementById("faceVideo");
+
+const faceStatus =
+document.getElementById("faceStatus");
+
+const analysisCard =
+document.getElementById("analysisCard");
+
+const analysisName =
+document.getElementById("analysisName");
+
+const analysisIdentity =
+document.getElementById("analysisIdentity");
+
+const analysisPhone =
+document.getElementById("analysisPhone");
+
+const analysisConfidence =
+document.getElementById("analysisConfidence");
+
+const enterSiteBtn =
+document.getElementById("enterSiteBtn");
+
+let cameraStream = null;
+
+let faceModelsLoaded = false;
+
+
+/* LOAD MODELS */
+
+async function loadFaceModels(){
+
+if(faceModelsLoaded)
+return;
+
+faceStatus.textContent =
+"Loading biometric engine...";
+
+try{
+
+await faceapi.nets.tinyFaceDetector.loadFromUri(
+"https://justadudewhohacks.github.io/face-api.js/models"
+);
+
+faceModelsLoaded = true;
+
+}catch(error){
+
+console.error(error);
+
+faceStatus.textContent =
+"Face engine could not load.";
+
+}
+
+}
+
+
+/* START CAMERA */
+
+async function startCamera(){
+
+try{
+
+cameraStream =
+await navigator.mediaDevices.getUserMedia({
+
+video:{
+facingMode:"user",
+width:{
+ideal:1280
+},
+height:{
+ideal:720
+}
+},
+
+audio:false
+
+});
+
+faceVideo.srcObject =
+cameraStream;
+
+await faceVideo.play();
+
+return true;
+
+}catch(error){
+
+console.error(error);
+
+faceStatus.textContent =
+"Camera permission is required.";
+
+return false;
+
+}
+
+}
+
+
+/* FACE DETECTION */
+
+async function detectFace(){
+
+if(!faceModelsLoaded)
+return;
+
+faceStatus.textContent =
+"Looking for your face...";
+
+let found = false;
+
+const detectorOptions =
+new faceapi.TinyFaceDetectorOptions({
+inputSize:320,
+scoreThreshold:.5
+});
+
+
+const interval =
+setInterval(
+async()=>{
+
+if(
+faceVideo.readyState < 2
+)
+return;
+
+try{
+
+const detection =
+await faceapi.detectSingleFace(
+faceVideo,
+detectorOptions
+);
+
+if(detection){
+
+found=true;
+
+clearInterval(interval);
+
+faceStatus.textContent =
+"Face detected successfully.";
+
+showAnalysis();
+
+}
+
+}catch(error){
+
+console.error(error);
+
+}
+
+},
+500
+);
+
+}
+
+
+/* START BIOMETRIC */
+
+async function startFaceVerification(){
+
+intro.classList.add("hide");
+
+faceScreen.classList.add("active");
+
+analysisCard.classList.remove("show");
+
+await loadFaceModels();
+
+const camera =
+await startCamera();
+
+if(camera){
+
+detectFace();
+
+}
+
+}
+
+
+/* ANALYSIS */
+
+function showAnalysis(){
+
+if(!currentPerson)
+return;
+
+analysisName.textContent =
+currentPerson.name;
+
+analysisIdentity.textContent =
+currentPerson.name;
+
+analysisPhone.textContent =
+currentPhone;
+
+analysisConfidence.textContent =
+"High";
+
+analysisCard.classList.add("show");
+
+}
+
+
+/* ENTER */
+
+enterSiteBtn.addEventListener(
+"click",
+()=>{
+
+if(cameraStream){
+
+cameraStream
+.getTracks()
+.forEach(track=>track.stop());
+
+}
+
+faceScreen.classList.remove(
+"active"
+);
+
+}
+);
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+let language =
+localStorage.getItem("language")
+|| "en";
+
+
+function updateLanguage(){
+
+const isFA =
+language === "fa";
+
+document.documentElement.lang =
+isFA ? "fa" : "en";
+
+document.documentElement.dir =
+isFA ? "rtl" : "ltr";
+
+document.body.classList.toggle(
+"rtl",
+isFA
+);
+
+document
+.querySelectorAll("[data-en]")
+.forEach(element=>{
+
+element.innerHTML =
+element.dataset[
+isFA ? "fa" : "en"
+];
+
+});
+
+document.getElementById(
+"languageBtn"
+).textContent =
+isFA ? "EN" : "FA";
+
+}
+
+
+updateLanguage();
+
+
+document.getElementById(
+"languageBtn"
+).addEventListener(
+"click",
+()=>{
+
+language =
+language === "en"
+? "fa"
+: "en";
+
+localStorage.setItem(
+"language",
+language
+);
+
+updateLanguage();
+
+}
+);
+
+
+/* =========================================================
+   THEME
+========================================================= */
+
+let theme =
+localStorage.getItem("theme")
+|| "dark";
+
+
+function updateTheme(){
+
+document.body.classList.toggle(
+"light",
+theme === "light"
+);
+
+document.getElementById(
+"themeBtn"
+).innerHTML =
+
+theme === "light"
+
+? '<i class="fa-solid fa-sun"></i>'
+
+: '<i class="fa-solid fa-moon"></i>';
+
+}
+
+
+updateTheme();
+
+
+document.getElementById(
+"themeBtn"
+).addEventListener(
+"click",
+()=>{
+
+theme =
+theme === "dark"
+? "light"
+: "dark";
+
+localStorage.setItem(
+"theme",
+theme
+);
+
+updateTheme();
+
+}
+);
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+const music =
+document.getElementById("bgMusic");
+
+const musicBtn =
+document.getElementById("musicBtn");
+
+const musicBox =
+document.getElementById("musicBox");
+
+let musicPlaying = false;
+
+
+musicBtn.addEventListener(
+"click",
+async()=>{
+
+if(!musicPlaying){
+
+try{
+
+await music.play();
+
+musicPlaying=true;
+
+musicBox.classList.remove(
+"paused"
+);
+
+musicBtn.innerHTML =
+'<i class="fa-solid fa-pause"></i>';
+
+}catch(error){
+
+alert(
+"mahdi.mp3 را کنار index.html قرار بده."
+);
+
+}
+
+}else{
+
+music.pause();
+
+musicPlaying=false;
+
+musicBox.classList.add(
+"paused"
+);
+
+musicBtn.innerHTML =
+'<i class="fa-solid fa-play"></i>';
+
+}
+
+}
+);
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+const observer =
+new IntersectionObserver(
+entries=>{
+
+entries.forEach(
+entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add(
+"show"
+);
+
+}
+
+});
+
+},
+{
+threshold:.12
+}
+);
+
+
+document
+.querySelectorAll(".reveal")
+.forEach(
+element=>
+observer.observe(element)
+);
+
+
+/* =========================================================
+   PARALLAX
+========================================================= */
+
+const heroImage =
+document.querySelector(".hero-image");
+
+
+window.addEventListener(
+"mousemove",
+e=>{
+
+if(window.innerWidth < 850)
+return;
+
+const x =
+(e.clientX /
+window.innerWidth - .5) * 10;
+
+const y =
+(e.clientY /
+window.innerHeight - .5) * 10;
+
+heroImage.style.transform =
+`rotate(3deg) translate(${x}px,${y}px)`;
+
+}
+);
+
+
+/* =========================================================
+   KEYBOARD MUSIC
+========================================================= */
+
+document.addEventListener(
+"keydown",
+e=>{
+
+if(
+e.code === "Space" &&
+e.target.tagName !== "INPUT"
+){
+
+e.preventDefault();
+
+musicBtn.click();
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
