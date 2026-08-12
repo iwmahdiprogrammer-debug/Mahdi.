@@ -2,27 +2,36 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mahdi Maramzi — Personal profioil</title>
+<title>Mahdi Maramzi — Digital Creator</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@400;500;600&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 <style>
 :root{
     --bg:#070707;
-    --surface:#101010;
+    --surface:#111;
     --surface2:#181818;
     --text:#f5f5f5;
-    --muted:#888;
+    --muted:#858585;
     --border:rgba(255,255,255,.12);
-    --danger:#ff6262;
-    --success:#7dffb2;
-    --shadow:0 30px 100px rgba(0,0,0,.55);
+    --danger:#ff6464;
+}
+
+body.light{
+    --bg:#f4f4f1;
+    --surface:#fff;
+    --surface2:#ededeb;
+    --text:#111;
+    --muted:#666;
+    --border:rgba(0,0,0,.12);
 }
 
 *{
@@ -40,6 +49,7 @@ body{
     color:var(--text);
     font-family:"DM Sans",sans-serif;
     overflow-x:hidden;
+    transition:.4s;
 }
 
 body.rtl{
@@ -55,8 +65,9 @@ button,input{
     font:inherit;
 }
 
-
-/* ================= BACKGROUND ================= */
+button{
+    -webkit-tap-highlight-color:transparent;
+}
 
 .background{
     position:fixed;
@@ -72,8 +83,8 @@ button,input{
     height:500px;
     border-radius:50%;
     background:radial-gradient(circle,rgba(255,255,255,.08),transparent 70%);
-    filter:blur(25px);
-    animation:float 12s infinite alternate ease-in-out;
+    filter:blur(30px);
+    animation:float 13s infinite alternate ease-in-out;
 }
 
 .orb.one{
@@ -102,28 +113,27 @@ button,input{
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-
 /* ================= LOGIN ================= */
 
 .login-overlay{
     position:fixed;
     inset:0;
     z-index:99999;
-
     display:flex;
-    justify-content:center;
     align-items:center;
-
+    justify-content:center;
     padding:20px;
 
     background:
-        radial-gradient(circle at 20% 20%,rgba(255,255,255,.09),transparent 30%),
-        radial-gradient(circle at 80% 80%,rgba(255,255,255,.05),transparent 30%),
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.08),transparent 35%),
         rgba(0,0,0,.88);
 
     backdrop-filter:blur(25px);
 
-    transition:.7s ease;
+    opacity:1;
+    visibility:visible;
+
+    transition:.7s;
 }
 
 .login-overlay.hide{
@@ -133,10 +143,10 @@ button,input{
 }
 
 .login-box{
-    position:relative;
-    width:min(470px,100%);
+    width:min(460px,100%);
     padding:42px;
 
+    position:relative;
     overflow:hidden;
 
     background:
@@ -146,26 +156,26 @@ button,input{
             rgba(255,255,255,.025)
         );
 
-    border:1px solid rgba(255,255,255,.14);
+    border:1px solid var(--border);
 
     box-shadow:
-        0 40px 120px rgba(0,0,0,.7),
-        inset 0 1px 0 rgba(255,255,255,.08);
+        0 40px 120px rgba(0,0,0,.6),
+        inset 0 1px rgba(255,255,255,.08);
 
     backdrop-filter:blur(35px);
 
-    animation:loginIn .9s cubic-bezier(.16,1,.3,1);
+    animation:loginIn .8s cubic-bezier(.16,1,.3,1);
 }
 
 .login-box::before{
     content:"";
     position:absolute;
-    width:260px;
-    height:260px;
-    right:-130px;
-    top:-130px;
-    border:1px solid rgba(255,255,255,.1);
+    width:280px;
+    height:280px;
     border-radius:50%;
+    border:1px solid rgba(255,255,255,.08);
+    right:-150px;
+    top:-150px;
 }
 
 .login-box::after{
@@ -173,34 +183,30 @@ button,input{
     position:absolute;
     width:160px;
     height:160px;
-    left:-90px;
-    bottom:-90px;
-    border:1px solid rgba(255,255,255,.07);
     border-radius:50%;
+    background:rgba(255,255,255,.035);
+    filter:blur(30px);
+    left:-80px;
+    bottom:-80px;
 }
 
 @keyframes loginIn{
     from{
         opacity:0;
         transform:translateY(35px) scale(.94);
-        filter:blur(8px);
     }
-
     to{
         opacity:1;
         transform:none;
-        filter:none;
     }
 }
 
 .login-brand{
     position:relative;
     z-index:2;
-
     font-size:9px;
-    letter-spacing:5px;
+    letter-spacing:4px;
     color:var(--muted);
-
     margin-bottom:45px;
 }
 
@@ -209,22 +215,20 @@ button,input{
     z-index:2;
 
     font-family:"Playfair Display",serif;
-    font-size:clamp(52px,11vw,78px);
-    line-height:.85;
+    font-size:clamp(50px,11vw,75px);
+    line-height:.9;
     font-weight:500;
 
-    margin-bottom:24px;
+    margin-bottom:22px;
 }
 
-.login-description,
-.otp-hint{
+.login-description{
     position:relative;
     z-index:2;
 
     color:var(--muted);
     font-size:13px;
     line-height:1.9;
-
     margin-bottom:30px;
 }
 
@@ -233,10 +237,10 @@ button,input{
     z-index:2;
 
     font-size:9px;
-    letter-spacing:3px;
     color:var(--muted);
-
-    margin-bottom:9px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:10px;
 }
 
 .phone-input,
@@ -246,12 +250,13 @@ button,input{
 
     width:100%;
 
-    padding:17px;
+    padding:17px 18px;
 
-    background:rgba(0,0,0,.25);
+    background:rgba(255,255,255,.04);
     color:var(--text);
 
     border:1px solid var(--border);
+
     outline:none;
 
     transition:.3s;
@@ -259,35 +264,39 @@ button,input{
 
 .phone-input:focus,
 .otp-input:focus{
-    border-color:rgba(255,255,255,.5);
-    box-shadow:0 0 0 4px rgba(255,255,255,.035);
+    border-color:var(--text);
+    box-shadow:0 0 30px rgba(255,255,255,.04);
 }
 
-.login-btn{
+.login-btn,
+.verify-btn,
+.resend-btn{
     position:relative;
     z-index:2;
 
     width:100%;
-    margin-top:13px;
 
+    margin-top:14px;
     padding:17px;
 
-    border:0;
-
-    background:var(--text);
-    color:var(--bg);
-
     cursor:pointer;
-
-    font-size:9px;
-    letter-spacing:3px;
 
     transition:.35s;
 }
 
+.login-btn{
+    background:var(--text);
+    color:var(--bg);
+    border:0;
+
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
 .login-btn:hover{
     transform:translateY(-3px);
-    box-shadow:0 15px 35px rgba(255,255,255,.08);
+    box-shadow:0 15px 40px rgba(255,255,255,.08);
 }
 
 .error{
@@ -296,15 +305,13 @@ button,input{
 
     min-height:20px;
 
-    margin-top:12px;
-
     color:var(--danger);
+
     font-size:11px;
     line-height:1.6;
+
+    margin-top:12px;
 }
-
-
-/* ================= OTP ================= */
 
 .otp-panel{
     display:none;
@@ -318,13 +325,19 @@ button,input{
 @keyframes fadeUp{
     from{
         opacity:0;
-        transform:translateY(18px);
+        transform:translateY(20px);
     }
-
     to{
         opacity:1;
         transform:none;
     }
+}
+
+.otp-hint{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.8;
+    margin-bottom:20px;
 }
 
 .code-display{
@@ -339,11 +352,11 @@ button,input{
 
     border:1px solid var(--border);
 
-    background:rgba(0,0,0,.2);
+    background:rgba(255,255,255,.025);
 
     font-size:34px;
     font-weight:600;
-    letter-spacing:9px;
+    letter-spacing:10px;
 
     margin-bottom:10px;
 
@@ -351,6 +364,7 @@ button,input{
 }
 
 .code-display span{
+    display:inline-block;
     animation:codeIn .5s both;
 }
 
@@ -360,19 +374,16 @@ button,input{
         transform:translateY(25px) scale(.6);
         filter:blur(8px);
     }
-
     to{
         opacity:1;
         transform:none;
-        filter:none;
+        filter:blur(0);
     }
 }
 
 .code-timer{
     min-height:20px;
-
     text-align:center;
-
     color:var(--muted);
     font-size:10px;
 }
@@ -383,33 +394,18 @@ button,input{
     text-align:center;
 
     font-size:24px;
-    letter-spacing:8px;
-}
-
-.verify-btn,
-.resend-btn,
-.back-btn{
-    position:relative;
-    z-index:2;
-
-    width:100%;
-
-    cursor:pointer;
-
-    transition:.3s;
+    letter-spacing:9px;
 }
 
 .verify-btn{
-    margin-top:12px;
-    padding:16px;
-
-    color:var(--text);
     background:transparent;
+    color:var(--text);
 
     border:1px solid var(--border);
 
-    font-size:9px;
-    letter-spacing:3px;
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
 }
 
 .verify-btn:hover{
@@ -423,15 +419,12 @@ button,input{
 }
 
 .resend-btn{
-    margin-top:10px;
-    padding:12px;
-
+    background:none;
     color:var(--muted);
-
-    background:transparent;
     border:0;
 
     font-size:10px;
+    letter-spacing:1px;
 }
 
 .resend-btn:hover{
@@ -439,23 +432,72 @@ button,input{
 }
 
 .resend-btn:disabled{
-    opacity:.3;
+    opacity:.35;
     cursor:not-allowed;
 }
 
 .back-btn{
-    margin-top:15px;
-
-    padding:10px;
-
-    color:var(--muted);
+    display:block;
+    margin:12px auto 0;
 
     background:none;
     border:0;
 
-    font-size:10px;
+    color:var(--muted);
+    cursor:pointer;
+
+    font-size:11px;
 }
 
+.success{
+    display:none;
+
+    position:absolute;
+    inset:0;
+
+    z-index:10;
+
+    background:var(--bg);
+
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+
+    text-align:center;
+}
+
+.success.show{
+    display:flex;
+    animation:fadeUp .5s ease;
+}
+
+.success-icon{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+
+    border:1px solid var(--border);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:25px;
+
+    font-size:22px;
+}
+
+.success h2{
+    font-family:"Playfair Display",serif;
+    font-size:42px;
+    font-weight:500;
+}
+
+.success p{
+    color:var(--muted);
+    margin-top:10px;
+    font-size:12px;
+}
 
 /* ================= HEADER ================= */
 
@@ -463,7 +505,6 @@ header{
     position:fixed;
     top:0;
     left:0;
-
     width:100%;
 
     z-index:1000;
@@ -475,7 +516,6 @@ header{
     align-items:center;
 
     background:rgba(7,7,7,.55);
-
     backdrop-filter:blur(20px);
 
     border-bottom:1px solid var(--border);
@@ -500,12 +540,17 @@ header{
     border:1px solid var(--border);
 
     background:transparent;
-
     color:var(--text);
 
     cursor:pointer;
 
     transition:.3s;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:11px;
 }
 
 .icon-btn:hover{
@@ -513,12 +558,10 @@ header{
     color:var(--bg);
 }
 
-
 /* ================= HERO ================= */
 
 .hero{
     min-height:100vh;
-
     padding:170px 8vw 100px;
 
     display:flex;
@@ -538,55 +581,49 @@ header{
 .eyebrow{
     font-size:10px;
     letter-spacing:5px;
-
     color:var(--muted);
-
+    text-transform:uppercase;
     margin-bottom:30px;
 }
 
 .hero h1{
     font-family:"Playfair Display",serif;
-
     font-size:clamp(70px,11vw,165px);
-
-    line-height:.8;
     font-weight:500;
-
+    line-height:.8;
     letter-spacing:-7px;
 }
 
-.outline{
+.hero h1 .outline{
     color:transparent;
     -webkit-text-stroke:1px var(--muted);
 }
 
 .hero-text{
     max-width:650px;
-
     margin-top:50px;
-
-    color:var(--muted);
 
     font-size:15px;
     line-height:2;
+
+    color:var(--muted);
 }
 
 .hero-btns{
     display:flex;
-    flex-wrap:wrap;
     gap:12px;
-
     margin-top:35px;
+    flex-wrap:wrap;
 }
 
 .main-btn,
 .outline-btn{
     display:inline-block;
-
     padding:17px 25px;
 
     font-size:10px;
     letter-spacing:2px;
+    text-transform:uppercase;
 
     transition:.4s;
 }
@@ -605,19 +642,14 @@ header{
     transform:translateY(-5px);
 }
 
-
-/* ================= HERO IMAGE ================= */
-
 .hero-image{
     position:relative;
-
+    width:100%;
     max-width:440px;
-
     margin:auto;
 
     transform:rotate(3deg);
-
-    transition:.6s;
+    transition:.7s;
 }
 
 .hero-image:hover{
@@ -625,19 +657,15 @@ header{
 }
 
 .hero-image img{
-    display:block;
-
     width:100%;
+    display:block;
     aspect-ratio:4/5;
-
     object-fit:cover;
-
     filter:grayscale(100%) contrast(1.1);
 }
 
 .hero-image::before{
     content:"";
-
     position:absolute;
     inset:20px;
 
@@ -648,18 +676,41 @@ header{
 
 .hero-image-caption{
     position:absolute;
-
-    left:25px;
     bottom:25px;
-
+    left:25px;
     z-index:3;
 
     font-size:10px;
     letter-spacing:3px;
 }
 
+/* ================= GENERAL ================= */
 
-/* ================= SECTIONS ================= */
+.marquee{
+    overflow:hidden;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    padding:22px 0;
+    white-space:nowrap;
+}
+
+.marquee-track{
+    display:inline-flex;
+    animation:marquee 22s linear infinite;
+}
+
+.marquee span{
+    margin:0 30px;
+    font-family:"Playfair Display",serif;
+    font-size:30px;
+    color:var(--muted);
+}
+
+@keyframes marquee{
+    to{
+        transform:translateX(-50%);
+    }
+}
 
 section{
     padding:150px 8vw;
@@ -669,7 +720,6 @@ section{
     display:flex;
     justify-content:space-between;
     align-items:end;
-
     margin-bottom:70px;
 }
 
@@ -681,21 +731,15 @@ section{
 
 .section-title{
     font-family:"Playfair Display",serif;
-
     font-size:clamp(55px,8vw,110px);
-
     font-weight:500;
     line-height:.9;
-
     letter-spacing:-5px;
 }
 
 .section-title span{
-    color:#444;
+    color:#4d4d4d;
 }
-
-
-/* ================= ABOUT ================= */
 
 .about{
     display:grid;
@@ -705,58 +749,43 @@ section{
 
 .quote{
     font-family:"Playfair Display",serif;
-
     font-size:clamp(35px,4vw,60px);
-
     line-height:1.05;
 }
 
 .quote span{
-    color:#444;
+    color:#4d4d4d;
 }
 
 .about-text{
     max-width:680px;
-
     color:var(--muted);
-
-    font-size:14px;
     line-height:2;
+    font-size:14px;
 }
 
 .about-text p{
     margin-bottom:25px;
 }
 
-
-/* ================= STATEMENT ================= */
-
 .statement{
-    padding:100px 0;
-
     border-top:1px solid var(--border);
     border-bottom:1px solid var(--border);
-
+    padding:100px 0;
     text-align:center;
 }
 
 .statement-text{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(35px,6vw,80px);
+    line-height:1;
     max-width:1100px;
     margin:auto;
-
-    font-family:"Playfair Display",serif;
-
-    font-size:clamp(35px,6vw,80px);
-
-    line-height:1;
 }
 
 .statement-text em{
     color:var(--muted);
 }
-
-
-/* ================= SKILLS ================= */
 
 .skills{
     border-top:1px solid var(--border);
@@ -766,11 +795,11 @@ section{
     display:grid;
     grid-template-columns:70px 1fr auto;
 
-    align-items:center;
-
     padding:34px 0;
 
     border-bottom:1px solid var(--border);
+
+    align-items:center;
 
     transition:.4s;
 }
@@ -790,9 +819,6 @@ section{
     font-size:clamp(27px,3vw,42px);
 }
 
-
-/* ================= TECH ================= */
-
 .tech-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
@@ -800,13 +826,10 @@ section{
 }
 
 .tech{
-    min-height:150px;
-
-    padding:30px;
-
-    background:var(--surface);
-
     border:1px solid var(--border);
+    background:var(--surface);
+    padding:30px;
+    min-height:150px;
 
     display:flex;
     flex-direction:column;
@@ -817,6 +840,7 @@ section{
 
 .tech:hover{
     transform:translateY(-8px);
+    background:var(--surface2);
 }
 
 .tech i{
@@ -828,9 +852,6 @@ section{
     font-size:25px;
 }
 
-
-/* ================= WORK ================= */
-
 .work-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -838,21 +859,18 @@ section{
 }
 
 .work{
-    position:relative;
-
     min-height:460px;
-
     padding:35px;
 
+    background:var(--surface);
+    border:1px solid var(--border);
+
+    position:relative;
     overflow:hidden;
 
     display:flex;
     flex-direction:column;
     justify-content:flex-end;
-
-    background:var(--surface);
-
-    border:1px solid var(--border);
 
     transition:.5s;
 }
@@ -864,18 +882,14 @@ section{
 .work-image{
     position:absolute;
     inset:0;
-
     opacity:.3;
-
     transition:.5s;
 }
 
 .work-image img{
     width:100%;
     height:100%;
-
     object-fit:cover;
-
     filter:grayscale(100%);
 }
 
@@ -891,10 +905,8 @@ section{
 
 .work-number{
     position:absolute;
-
     top:30px;
     right:30px;
-
     color:var(--muted);
 }
 
@@ -902,13 +914,13 @@ section{
     font-size:9px;
     letter-spacing:3px;
     color:var(--muted);
+    text-transform:uppercase;
 }
 
 .work h3{
     font-family:"Playfair Display",serif;
-
     font-size:60px;
-
+    font-weight:500;
     margin-top:10px;
 }
 
@@ -917,9 +929,6 @@ section{
     font-size:12px;
     margin-top:10px;
 }
-
-
-/* ================= CONTACT ================= */
 
 .contact{
     min-height:90vh;
@@ -933,26 +942,21 @@ section{
 
 .contact-title{
     font-family:"Playfair Display",serif;
-
     font-size:clamp(65px,12vw,165px);
-
     font-weight:500;
     line-height:.8;
-
     letter-spacing:-7px;
 }
 
 .contact-title span{
-    color:#444;
+    color:#4d4d4d;
 }
 
 .contact-sub{
     max-width:600px;
-
     margin:35px auto 0;
 
     color:var(--muted);
-
     line-height:1.8;
 }
 
@@ -960,14 +964,12 @@ section{
     display:flex;
     justify-content:center;
     gap:12px;
-
     margin-top:45px;
 }
 
 .social{
     width:58px;
     height:58px;
-
     border-radius:50%;
 
     border:1px solid var(--border);
@@ -982,19 +984,13 @@ section{
 .social:hover{
     background:var(--text);
     color:var(--bg);
-
     transform:translateY(-7px);
 }
 
-
-/* ================= MUSIC ================= */
-
 .music{
     position:fixed;
-
-    right:25px;
     bottom:25px;
-
+    right:25px;
     z-index:5000;
 }
 
@@ -1003,11 +999,9 @@ section{
     height:55px;
 
     border-radius:50%;
-
     border:1px solid var(--border);
 
     background:rgba(20,20,20,.7);
-
     color:var(--text);
 
     cursor:pointer;
@@ -1015,9 +1009,9 @@ section{
 
 .music-bars{
     display:flex;
-    justify-content:center;
-    align-items:end;
     gap:3px;
+    align-items:end;
+    justify-content:center;
     height:20px;
 }
 
@@ -1032,7 +1026,7 @@ section{
 .music-bars span:nth-child(3){animation-delay:.3s}
 .music-bars span:nth-child(4){animation-delay:.45s}
 
-.music.paused span{
+.music.paused .music-bars span{
     animation-play-state:paused;
     height:4px;
 }
@@ -1041,29 +1035,20 @@ section{
     50%{height:20px}
 }
 
-
-/* ================= FOOTER ================= */
-
 footer{
-    padding:30px 8vw;
-
     border-top:1px solid var(--border);
+    padding:30px 8vw;
 
     display:flex;
     justify-content:space-between;
 
     color:var(--muted);
-
     font-size:10px;
 }
 
-
-/* ================= REVEAL ================= */
-
 .reveal{
     opacity:0;
-    transform:translateY(50px);
-
+    transform:translateY(60px);
     transition:1s cubic-bezier(.16,1,.3,1);
 }
 
@@ -1072,8 +1057,46 @@ footer{
     transform:none;
 }
 
+/* ================= RTL ================= */
+
+html[dir="rtl"] .hero h1,
+html[dir="rtl"] .section-title,
+html[dir="rtl"] .contact-title{
+    letter-spacing:0;
+}
+
+html[dir="rtl"] .skill:hover{
+    padding-left:0;
+    padding-right:20px;
+}
+
+html[dir="rtl"] .work-number{
+    right:auto;
+    left:30px;
+}
+
+html[dir="rtl"] .hero-image-caption{
+    left:auto;
+    right:25px;
+}
 
 /* ================= MOBILE ================= */
+
+@media(max-width:1000px){
+
+    .hero-grid{
+        grid-template-columns:1fr .8fr;
+        gap:45px;
+    }
+
+    .about{
+        gap:55px;
+    }
+
+    .tech-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
 
 @media(max-width:850px){
 
@@ -1108,7 +1131,6 @@ footer{
 
     .section-title{
         font-size:clamp(48px,13vw,75px);
-        letter-spacing:-3px;
     }
 
     .about{
@@ -1126,10 +1148,6 @@ footer{
 
     .work{
         min-height:370px;
-    }
-
-    .work h3{
-        font-size:48px;
     }
 
     .skill{
@@ -1152,14 +1170,18 @@ footer{
     }
 
     .login-box{
-        padding:30px 22px;
+        padding:30px 23px;
     }
 }
 
 @media(max-width:420px){
 
-    .tech-grid{
-        grid-template-columns:1fr;
+    .login-box{
+        padding:27px 18px;
+    }
+
+    .login-title{
+        font-size:48px;
     }
 
     .hero-btns{
@@ -1172,8 +1194,8 @@ footer{
         text-align:center;
     }
 
-    .login-box{
-        padding:26px 18px;
+    .tech-grid{
+        grid-template-columns:1fr;
     }
 }
 </style>
@@ -1201,21 +1223,24 @@ footer{
 
         <div id="phonePanel">
 
-            <h1 class="login-title"
+            <h1
+                class="login-title"
                 data-en="Welcome."
                 data-fa="خوش آمدید.">
                 Welcome.
             </h1>
 
-            <p class="login-description"
-               data-en="Enter your mobile number to enter my digital world."
-               data-fa="شماره موبایل خود را وارد کنید تا وارد دنیای دیجیتال من شوید.">
-                Enter your mobile number to enter my digital world.
+            <p
+                class="login-description"
+                data-en="Enter your mobile number to continue to my digital world."
+                data-fa="شماره موبایل خود را وارد کنید تا وارد دنیای دیجیتال من شوید.">
+                Enter your mobile number to continue to my digital world.
             </p>
 
-            <div class="phone-label"
-                 data-en="Mobile number"
-                 data-fa="شماره موبایل">
+            <div
+                class="phone-label"
+                data-en="Mobile number"
+                data-fa="شماره موبایل">
                 Mobile number
             </div>
 
@@ -1224,21 +1249,26 @@ footer{
                 class="phone-input"
                 type="tel"
                 inputmode="numeric"
-                autocomplete="tel"
                 placeholder="+98 912 000 0000">
 
-            <button id="sendCode" class="login-btn">
-                CONTINUE
+            <button
+                id="sendCode"
+                class="login-btn">
+                Continue
             </button>
 
-            <div id="phoneError" class="error"></div>
+            <div
+                id="phoneError"
+                class="error">
+            </div>
 
         </div>
 
 
         <div id="otpPanel" class="otp-panel">
 
-            <h1 class="login-title"
+            <h1
+                class="login-title"
                 data-en="Verify."
                 data-fa="تأیید.">
                 Verify.
@@ -1257,27 +1287,51 @@ footer{
                 class="otp-input"
                 type="text"
                 inputmode="numeric"
-                autocomplete="one-time-code"
                 maxlength="6"
+                autocomplete="one-time-code"
                 placeholder="••••••">
 
-            <button id="verifyBtn" class="verify-btn">
-                VERIFY & ENTER
+            <button
+                id="verifyBtn"
+                class="verify-btn">
+                Verify & Enter
             </button>
 
-            <button id="resendBtn" class="resend-btn" disabled>
-                RESEND CODE
+            <button
+                id="resendBtn"
+                class="resend-btn"
+                disabled>
+                Resend code
             </button>
 
-            <div id="otpError" class="error"></div>
+            <div
+                id="otpError"
+                class="error">
+            </div>
 
-            <button id="backBtn" class="back-btn">
+            <button
+                id="backBtn"
+                class="back-btn">
                 ← Change number
             </button>
 
         </div>
 
+
+        <div id="successScreen" class="success">
+
+            <div class="success-icon">
+                <i class="fa-solid fa-check"></i>
+            </div>
+
+            <h2>Welcome.</h2>
+
+            <p>Entering Mahdi's digital world...</p>
+
+        </div>
+
     </div>
+
 </div>
 
 
@@ -1289,11 +1343,15 @@ footer{
 
     <div class="header-actions">
 
-        <button id="languageBtn" class="icon-btn">
+        <button
+            class="icon-btn"
+            id="languageBtn">
             EN
         </button>
 
-        <button id="themeBtn" class="icon-btn">
+        <button
+            class="icon-btn"
+            id="themeBtn">
             <i class="fa-solid fa-moon"></i>
         </button>
 
@@ -1302,9 +1360,9 @@ footer{
 </header>
 
 
-<main>
+<!-- ================= MAIN ================= -->
 
-<!-- ================= HERO ================= -->
+<main>
 
 <section class="hero">
 
@@ -1312,107 +1370,142 @@ footer{
 
 <div>
 
-<div class="eyebrow"
-     data-en="Programmer · Developer · Creator"
-     data-fa="برنامه‌نویس · توسعه‌دهنده · خالق">
-    Programmer · Developer · Creator
+    <div
+        class="eyebrow"
+        data-en="Programmer · Developer · Creator"
+        data-fa="برنامه‌نویس · توسعه‌دهنده · خالق">
+        Programmer · Developer · Creator
+    </div>
+
+    <h1>
+        Mahdi<br>
+        <span class="outline">Maramzi</span>
+    </h1>
+
+    <p
+        class="hero-text"
+        data-en="I build digital experiences with clean code, bold ideas and attention to the details that make a website feel alive."
+        data-fa="من تجربه‌های دیجیتال را با کدنویسی تمیز، ایده‌های متفاوت و توجه به جزئیاتی می‌سازم که یک وب‌سایت را زنده می‌کنند.">
+        I build digital experiences with clean code,
+        bold ideas and attention to the details that
+        make a website feel alive.
+    </p>
+
+    <div class="hero-btns">
+
+        <a
+            href="#work"
+            class="main-btn"
+            data-en="View my work"
+            data-fa="نمونه‌کارها">
+            View my work
+        </a>
+
+        <a
+            href="#contact"
+            class="outline-btn"
+            data-en="Contact me"
+            data-fa="ارتباط با من">
+            Contact me
+        </a>
+
+    </div>
+
 </div>
-
-<h1>
-    Mahdi<br>
-    <span class="outline">Maramzi</span>
-</h1>
-
-<p class="hero-text"
-   data-en="I build digital experiences with clean code, bold ideas and attention to detail."
-   data-fa="من تجربه‌های دیجیتال را با کدنویسی تمیز، ایده‌های متفاوت و توجه به جزئیات می‌سازم.">
-    I build digital experiences with clean code,
-    bold ideas and attention to detail.
-</p>
-
-<div class="hero-btns">
-
-<a href="#work"
-   class="main-btn"
-   data-en="View my work"
-   data-fa="نمونه‌کارها">
-    View my work
-</a>
-
-<a href="#contact"
-   class="outline-btn"
-   data-en="Contact me"
-   data-fa="ارتباط با من">
-    Contact me
-</a>
-
-</div>
-
-</div>
-
 
 <div>
 
-<div class="hero-image">
+    <div class="hero-image">
 
-<img
-src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=85"
-alt="Developer workspace">
+        <img
+            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=85"
+            alt="Developer workspace">
 
-<div class="hero-image-caption">
-MM / 2026
-</div>
+        <div class="hero-image-caption">
+            MM / 2026
+        </div>
 
-</div>
-
-</div>
+    </div>
 
 </div>
+
+</div>
+
 </section>
 
 
-<!-- ================= ABOUT ================= -->
+<div class="marquee">
+
+<div class="marquee-track">
+
+<span>CODE</span>
+<span>✦</span>
+<span>CREATE</span>
+<span>✦</span>
+<span>DESIGN</span>
+<span>✦</span>
+<span>BUILD</span>
+<span>✦</span>
+
+<span>CODE</span>
+<span>✦</span>
+<span>CREATE</span>
+<span>✦</span>
+<span>DESIGN</span>
+<span>✦</span>
+<span>BUILD</span>
+<span>✦</span>
+
+</div>
+
+</div>
+
 
 <section id="about">
 
 <div class="section-top reveal">
 
-<div class="number">01 / ABOUT</div>
+    <div class="number">01 / ABOUT</div>
 
-<h2 class="section-title">
-Who <span>I am.</span>
-</h2>
+    <h2
+        class="section-title"
+        data-en="Who I am."
+        data-fa="من کی هستم.">
+        Who <span>I am.</span>
+    </h2>
 
 </div>
 
 <div class="about reveal">
 
-<div class="quote">
-I don't just write code.
-<span>I create experiences.</span>
+    <div
+        class="quote"
+        data-en="I don't just write code. I create experiences."
+        data-fa="من فقط کد نمی‌نویسم؛ تجربه خلق می‌کنم.">
+        I don't just write code.
+        <span>I create experiences.</span>
+    </div>
+
+    <div class="about-text">
+
+        <p>
+            I'm Mahdi Maramzi, a programmer focused on modern web experiences and creative digital products.
+        </p>
+
+        <p>
+            I believe a great website should not only work perfectly. It should communicate, create trust and leave an impression.
+        </p>
+
+        <p>
+            That's the kind of work I want my name to be connected with.
+        </p>
+
+    </div>
+
 </div>
 
-<div class="about-text">
-
-<p>
-I'm Mahdi Maramzi, a programmer focused on modern web experiences and creative digital products.
-</p>
-
-<p>
-I believe a great website should not only work perfectly. It should communicate, create trust and leave an impression.
-</p>
-
-<p>
-That's the kind of work I want my name to be connected with.
-</p>
-
-</div>
-
-</div>
 </section>
 
-
-<!-- ================= STATEMENT ================= -->
 
 <section>
 
@@ -1428,101 +1521,97 @@ Good design gets attention.
 </section>
 
 
-<!-- ================= SKILLS ================= -->
-
 <section>
 
 <div class="section-top reveal">
 
-<div class="number">02 / SKILLS</div>
+    <div class="number">02 / SKILLS</div>
 
-<h2 class="section-title">
-What <span>I build.</span>
-</h2>
+    <h2 class="section-title">
+        What <span>I build.</span>
+    </h2>
 
 </div>
 
 <div class="skills reveal">
 
 <div class="skill">
-<div class="skill-num">01</div>
-<div class="skill-name">Web Development</div>
-<div class="skill-level">FOCUS</div>
+    <div class="skill-num">01</div>
+    <div class="skill-name">Web Development</div>
+    <div class="skill-level">FOCUS</div>
 </div>
 
 <div class="skill">
-<div class="skill-num">02</div>
-<div class="skill-name">Creative UI / UX</div>
-<div class="skill-level">FOCUS</div>
+    <div class="skill-num">02</div>
+    <div class="skill-name">Creative UI / UX</div>
+    <div class="skill-level">FOCUS</div>
 </div>
 
 <div class="skill">
-<div class="skill-num">03</div>
-<div class="skill-name">Interactive Websites</div>
-<div class="skill-level">FOCUS</div>
+    <div class="skill-num">03</div>
+    <div class="skill-name">Interactive Websites</div>
+    <div class="skill-level">FOCUS</div>
 </div>
 
 <div class="skill">
-<div class="skill-num">04</div>
-<div class="skill-name">Freelance Projects</div>
-<div class="skill-level">FOCUS</div>
+    <div class="skill-num">04</div>
+    <div class="skill-name">Freelance Projects</div>
+    <div class="skill-level">FOCUS</div>
 </div>
 
 </div>
+
 </section>
 
-
-<!-- ================= TECH ================= -->
 
 <section>
 
 <div class="section-top reveal">
 
-<div class="number">03 / STACK</div>
+    <div class="number">03 / STACK</div>
 
-<h2 class="section-title">
-My <span>tools.</span>
-</h2>
+    <h2 class="section-title">
+        My <span>tools.</span>
+    </h2>
 
 </div>
 
 <div class="tech-grid reveal">
 
 <div class="tech">
-<i class="fa-brands fa-html5"></i>
-<div class="tech-name">HTML5</div>
+    <i class="fa-brands fa-html5"></i>
+    <div class="tech-name">HTML5</div>
 </div>
 
 <div class="tech">
-<i class="fa-brands fa-css3-alt"></i>
-<div class="tech-name">CSS3</div>
+    <i class="fa-brands fa-css3-alt"></i>
+    <div class="tech-name">CSS3</div>
 </div>
 
 <div class="tech">
-<i class="fa-brands fa-js"></i>
-<div class="tech-name">JavaScript</div>
+    <i class="fa-brands fa-js"></i>
+    <div class="tech-name">JavaScript</div>
 </div>
 
 <div class="tech">
-<i class="fa-brands fa-php"></i>
-<div class="tech-name">PHP</div>
+    <i class="fa-brands fa-php"></i>
+    <div class="tech-name">PHP</div>
 </div>
 
 </div>
+
 </section>
 
-
-<!-- ================= WORK ================= -->
 
 <section id="work">
 
 <div class="section-top reveal">
 
-<div class="number">04 / WORK</div>
+    <div class="number">04 / WORK</div>
 
-<h2 class="section-title">
-Selected <span>work.</span>
-</h2>
+    <h2 class="section-title">
+        Selected <span>work.</span>
+    </h2>
 
 </div>
 
@@ -1530,147 +1619,167 @@ Selected <span>work.</span>
 
 <article class="work">
 
-<div class="work-number">01</div>
+    <div class="work-number">01</div>
 
-<div class="work-image">
-<img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=85">
-</div>
+    <div class="work-image">
+        <img
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=85"
+            alt="AGEX">
+    </div>
 
-<div class="work-content">
+    <div class="work-content">
 
-<div class="work-type">Web Application</div>
+        <div class="work-type">
+            Web Application
+        </div>
 
-<h3>AGEX</h3>
+        <h3>AGEX</h3>
 
-<p>A smart digital calculator experience.</p>
+        <p>
+            A smart digital calculator experience.
+        </p>
 
-</div>
-
-</article>
-
-
-<article class="work">
-
-<div class="work-number">02</div>
-
-<div class="work-image">
-<img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1000&q=85">
-</div>
-
-<div class="work-content">
-
-<div class="work-type">Portfolio</div>
-
-<h3>MM.</h3>
-
-<p>A personal digital identity.</p>
-
-</div>
+    </div>
 
 </article>
 
 
 <article class="work">
 
-<div class="work-number">03</div>
+    <div class="work-number">02</div>
 
-<div class="work-image">
-<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=85">
-</div>
+    <div class="work-image">
+        <img
+            src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1000&q=85"
+            alt="Portfolio">
+    </div>
 
-<div class="work-content">
+    <div class="work-content">
 
-<div class="work-type">Experimental</div>
+        <div class="work-type">
+            Portfolio
+        </div>
 
-<h3>LAB</h3>
+        <h3>MM.</h3>
 
-<p>Experiments in interaction and design.</p>
+        <p>
+            A personal digital identity.
+        </p>
 
-</div>
+    </div>
 
 </article>
 
 
 <article class="work">
 
-<div class="work-number">04</div>
+    <div class="work-number">03</div>
 
-<div class="work-content">
+    <div class="work-image">
+        <img
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=85"
+            alt="LAB">
+    </div>
 
-<div class="work-type">Coming Soon</div>
+    <div class="work-content">
 
-<h3>NEXT</h3>
+        <div class="work-type">
+            Experimental
+        </div>
 
-<p>Something new is being built.</p>
+        <h3>LAB</h3>
 
-</div>
+        <p>
+            Experiments in interaction and design.
+        </p>
+
+    </div>
+
+</article>
+
+
+<article class="work">
+
+    <div class="work-number">04</div>
+
+    <div class="work-content">
+
+        <div class="work-type">
+            Coming Soon
+        </div>
+
+        <h3>NEXT</h3>
+
+        <p>
+            Something new is being built.
+        </p>
+
+    </div>
 
 </article>
 
 </div>
+
 </section>
 
-
-<!-- ================= CONTACT ================= -->
 
 <section id="contact" class="contact">
 
 <div class="reveal">
 
-<div class="number">05 / CONTACT</div>
+    <div class="number">05 / CONTACT</div>
 
-<h2 class="contact-title">
-Let's<br>
-<span>build.</span>
-</h2>
+    <h2 class="contact-title">
+        Let's<br>
+        <span>build.</span>
+    </h2>
 
-<p class="contact-sub">
-Have an idea, project or collaboration in mind?
-Let's turn it into something real.
-</p>
+    <p class="contact-sub">
+        Have an idea, project or collaboration in mind?
+        Let's turn it into something real.
+    </p>
 
-<div class="socials">
+    <div class="socials">
 
-<a id="instagram"
-class="social"
-target="_blank"
-rel="noopener"
-aria-label="Instagram">
-<i class="fa-brands fa-instagram"></i>
-</a>
+        <a
+            href="https://instagram.com/lmahdi.mz"
+            target="_blank"
+            rel="noopener"
+            class="social">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
 
-<a id="whatsapp"
-class="social"
-target="_blank"
-rel="noopener"
-aria-label="WhatsApp">
-<i class="fa-brands fa-whatsapp"></i>
-</a>
+        <a
+            href="https://wa.me/989934920508"
+            target="_blank"
+            rel="noopener"
+            class="social">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
 
-<a id="phone"
-class="social"
-aria-label="Phone">
-<i class="fa-solid fa-phone"></i>
-</a>
+        <a
+            href="tel:+989934920508"
+            class="social">
+            <i class="fa-solid fa-phone"></i>
+        </a>
 
-<a id="email"
-class="social"
-aria-label="Email">
-<i class="fa-solid fa-envelope"></i>
-</a>
+        <a
+            href="mailto:iwmahdiprogrammer@gmail.com"
+            class="social">
+            <i class="fa-solid fa-envelope"></i>
+        </a>
+
+    </div>
 
 </div>
 
-</div>
 </section>
 
 </main>
 
 
-<!-- ================= MUSIC ================= -->
-
 <audio id="backgroundMusic" loop preload="auto">
-<source src="mahdi.mp3" type="audio/mpeg">
+    <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <div class="music paused" id="musicBox">
@@ -1704,9 +1813,9 @@ MM / DIGITAL CREATOR
 
 <script>
 
-/* =====================================================
+/* =========================================================
    CONFIG
-===================================================== */
+========================================================= */
 
 const CONFIG = {
 
@@ -1721,26 +1830,9 @@ const CONFIG = {
 };
 
 
-/* =====================================================
-   CONTACT
-===================================================== */
-
-document.getElementById("instagram").href =
-CONFIG.instagram;
-
-document.getElementById("whatsapp").href =
-CONFIG.whatsapp;
-
-document.getElementById("phone").href =
-CONFIG.phone;
-
-document.getElementById("email").href =
-CONFIG.email;
-
-
-/* =====================================================
+/* =========================================================
    LANGUAGE
-===================================================== */
+========================================================= */
 
 let language =
 localStorage.getItem("language") || "en";
@@ -1753,52 +1845,73 @@ function updateLanguage(){
     const fa = language === "fa";
 
     document.documentElement.lang =
-    fa ? "fa" : "en";
+        fa ? "fa" : "en";
 
     document.documentElement.dir =
-    fa ? "rtl" : "ltr";
+        fa ? "rtl" : "ltr";
 
-    document.body.classList.toggle("rtl",fa);
+    document.body.classList.toggle(
+        "rtl",
+        fa
+    );
 
     document
     .querySelectorAll("[data-en]")
-    .forEach(el=>{
+    .forEach(el => {
 
-        el.textContent =
-        el.dataset[fa ? "fa" : "en"];
+        const value =
+            fa
+            ? el.dataset.fa
+            : el.dataset.en;
+
+        if(value){
+            el.textContent = value;
+        }
 
     });
 
     languageBtn.textContent =
-    fa ? "EN" : "FA";
+        fa ? "EN" : "FA";
 
-    document.getElementById("phoneInput").placeholder =
-    fa ? "0912 000 0000" : "+98 912 000 0000";
+    document.getElementById("phoneInput")
+    .placeholder =
+        fa
+        ? "0912 000 0000"
+        : "+98 912 000 0000";
 
-    updateOtpLanguage();
+    updateOtpText();
+
 }
 
-languageBtn.addEventListener("click",()=>{
+languageBtn.addEventListener(
+    "click",
+    ()=>{
 
-    language =
-    language === "en" ? "fa" : "en";
+        language =
+            language === "en"
+            ? "fa"
+            : "en";
 
-    localStorage.setItem("language",language);
+        localStorage.setItem(
+            "language",
+            language
+        );
 
-    updateLanguage();
+        updateLanguage();
 
-});
+    }
+);
 
 
-/* =====================================================
+/* =========================================================
    THEME
-===================================================== */
-
-const themeBtn =
-document.getElementById("themeBtn");
+========================================================= */
 
 let theme =
 localStorage.getItem("theme") || "dark";
+
+const themeBtn =
+document.getElementById("themeBtn");
 
 function updateTheme(){
 
@@ -1808,36 +1921,54 @@ function updateTheme(){
     );
 
     themeBtn.innerHTML =
-    theme === "light"
-    ? '<i class="fa-solid fa-sun"></i>'
-    : '<i class="fa-solid fa-moon"></i>';
+        theme === "light"
+        ? '<i class="fa-solid fa-sun"></i>'
+        : '<i class="fa-solid fa-moon"></i>';
+
 }
 
-themeBtn.addEventListener("click",()=>{
+themeBtn.addEventListener(
+    "click",
+    ()=>{
 
-    theme =
-    theme === "dark" ? "light" : "dark";
+        theme =
+            theme === "dark"
+            ? "light"
+            : "dark";
 
-    localStorage.setItem("theme",theme);
+        localStorage.setItem(
+            "theme",
+            theme
+        );
 
-    updateTheme();
+        updateTheme();
 
-});
+    }
+);
 
 updateTheme();
 
 
-/* =====================================================
+/* =========================================================
    OTP
-===================================================== */
+========================================================= */
 
 let generatedCode = "";
+
 let codeExpiresAt = 0;
+
 let timerInterval = null;
+
+let resendTimer = null;
+
 let attempts = 0;
 
 const MAX_ATTEMPTS = 5;
-const CODE_TIME = 60;
+
+const OTP_TIME = 60;
+
+
+/* عناصر */
 
 const loginOverlay =
 document.getElementById("loginOverlay");
@@ -1866,19 +1997,22 @@ document.getElementById("codeDisplay");
 const codeTimer =
 document.getElementById("codeTimer");
 
+const otpHint =
+document.getElementById("otpHint");
+
 const verifyBtn =
 document.getElementById("verifyBtn");
 
 const resendBtn =
 document.getElementById("resendBtn");
 
-const otpHint =
-document.getElementById("otpHint");
+const successScreen =
+document.getElementById("successScreen");
 
 
-/* =====================================================
+/* =========================================================
    GENERATE CODE
-===================================================== */
+========================================================= */
 
 function generateCode(){
 
@@ -1890,373 +2024,518 @@ function generateCode(){
 }
 
 
-/* =====================================================
-   OTP LANGUAGE
-===================================================== */
+/* =========================================================
+   OTP TEXT
+========================================================= */
 
-function updateOtpLanguage(){
+function updateOtpText(){
 
     if(language === "fa"){
 
         otpHint.textContent =
-        "کد تأیید برای ورود ساخته شد.";
+            "کد تأیید شما ساخته شد. کد نمایش داده‌شده را وارد کنید.";
 
     }else{
 
         otpHint.textContent =
-        "Your verification code has been generated.";
+            "Your verification code has been generated. Enter the code shown above.";
 
     }
-
-    updateOtpTimer();
 
 }
 
 
-/* =====================================================
+/* =========================================================
    SHOW CODE
-===================================================== */
+========================================================= */
 
 function showCode(){
 
     clearInterval(timerInterval);
 
+    clearInterval(resendTimer);
+
     generatedCode =
-    generateCode();
+        generateCode();
+
+    console.log(
+        "Generated OTP:",
+        generatedCode
+    );
 
     codeExpiresAt =
-    Date.now() + CODE_TIME * 1000;
+        Date.now() + OTP_TIME * 1000;
+
 
     codeDisplay.innerHTML = "";
 
+
     generatedCode
     .split("")
-    .forEach((num,index)=>{
+    .forEach((digit,index)=>{
 
         const span =
         document.createElement("span");
 
-        span.textContent = num;
+        span.textContent =
+            digit;
 
         span.style.animationDelay =
-        index * .07 + "s";
+            `${index * .08}s`;
 
         codeDisplay.appendChild(span);
 
     });
 
-    resendBtn.disabled = true;
-
-    updateOtpTimer();
-
-    timerInterval =
-    setInterval(updateOtpTimer,250);
-
-}
-
-
-/* =====================================================
-   TIMER
-===================================================== */
-
-function updateOtpTimer(){
-
-    const remaining =
-    Math.max(
-        0,
-        codeExpiresAt - Date.now()
-    );
-
-    const seconds =
-    Math.ceil(remaining / 1000);
-
-    if(remaining <= 0){
-
-        clearInterval(timerInterval);
-
-        codeDisplay.textContent =
-        "••••••";
-
-        resendBtn.disabled = false;
-
-        codeTimer.textContent =
-        language === "fa"
-        ? "کد منقضی شد — ارسال مجدد فعال است."
-        : "Code expired — resend is available.";
-
-        return;
-    }
-
-    codeTimer.textContent =
-    language === "fa"
-    ? `اعتبار کد: ${seconds} ثانیه`
-    : `Code expires in ${seconds}s`;
-
-}
-
-
-/* =====================================================
-   PHONE
-===================================================== */
-
-function normalizePhone(value){
-
-    return value
-    .replace(/[^\d+]/g,"")
-    .replace(/\s/g,"");
-
-}
-
-
-/* =====================================================
-   SEND
-===================================================== */
-
-document
-.getElementById("sendCode")
-.addEventListener("click",()=>{
-
-    const phone =
-    normalizePhone(phoneInput.value);
-
-    if(phone.replace("+","").length < 10){
-
-        phoneError.textContent =
-        language === "fa"
-        ? "لطفاً یک شماره موبایل معتبر وارد کنید."
-        : "Please enter a valid mobile number.";
-
-        return;
-    }
-
-    phoneError.textContent = "";
-    otpError.textContent = "";
 
     attempts = 0;
 
     verifyBtn.disabled = false;
 
-    phonePanel.style.display = "none";
-
-    otpPanel.classList.add("show");
-
-    showCode();
+    otpError.textContent = "";
 
     otpInput.value = "";
 
-    otpInput.focus();
 
-});
+    updateOtpTimer();
+
+    timerInterval =
+        setInterval(
+            updateOtpTimer,
+            250
+        );
 
 
-/* =====================================================
+    startResendTimer();
+
+}
+
+
+/* =========================================================
+   OTP TIMER
+========================================================= */
+
+function updateOtpTimer(){
+
+    const remaining =
+        Math.max(
+            0,
+            codeExpiresAt - Date.now()
+        );
+
+
+    if(remaining <= 0){
+
+        clearInterval(
+            timerInterval
+        );
+
+        codeDisplay.textContent =
+            "••••••";
+
+        codeTimer.textContent =
+            language === "fa"
+            ? "کد منقضی شد."
+            : "Code expired.";
+
+        return;
+
+    }
+
+
+    const seconds =
+        Math.ceil(
+            remaining / 1000
+        );
+
+
+    codeTimer.textContent =
+        language === "fa"
+        ? `اعتبار کد: ${seconds} ثانیه`
+        : `Code expires in ${seconds}s`;
+
+}
+
+
+/* =========================================================
+   RESEND TIMER
+========================================================= */
+
+function startResendTimer(){
+
+    let seconds = 5;
+
+    resendBtn.disabled = true;
+
+    resendBtn.textContent =
+        language === "fa"
+        ? `ارسال مجدد در ${seconds} ثانیه`
+        : `Resend in ${seconds}s`;
+
+
+    resendTimer =
+        setInterval(()=>{
+
+            seconds--;
+
+
+            if(seconds <= 0){
+
+                clearInterval(
+                    resendTimer
+                );
+
+                resendBtn.disabled =
+                    false;
+
+                resendBtn.textContent =
+                    language === "fa"
+                    ? "ارسال مجدد کد"
+                    : "Resend code";
+
+                return;
+
+            }
+
+
+            resendBtn.textContent =
+                language === "fa"
+                ? `ارسال مجدد در ${seconds} ثانیه`
+                : `Resend in ${seconds}s`;
+
+        },1000);
+
+}
+
+
+/* =========================================================
+   PHONE NORMALIZE
+========================================================= */
+
+function normalizePhone(value){
+
+    return value
+        .replace(/[^\d+]/g,"")
+        .replace(/\s/g,"");
+
+}
+
+
+/* =========================================================
+   SEND CODE
+========================================================= */
+
+document
+.getElementById("sendCode")
+.addEventListener(
+    "click",
+    ()=>{
+
+        const phone =
+            normalizePhone(
+                phoneInput.value
+            );
+
+
+        if(
+            phone.replace("+","").length < 10
+        ){
+
+            phoneError.textContent =
+                language === "fa"
+                ? "لطفاً یک شماره موبایل معتبر وارد کنید."
+                : "Please enter a valid mobile number.";
+
+            return;
+
+        }
+
+
+        phoneError.textContent = "";
+
+        phonePanel.style.display =
+            "none";
+
+        otpPanel.classList.add(
+            "show"
+        );
+
+        showCode();
+
+        otpInput.focus();
+
+    }
+);
+
+
+/* =========================================================
+   RESEND
+========================================================= */
+
+resendBtn.addEventListener(
+    "click",
+    ()=>{
+
+        if(resendBtn.disabled)
+            return;
+
+        showCode();
+
+        otpInput.focus();
+
+    }
+);
+
+
+/* =========================================================
    VERIFY
-===================================================== */
+========================================================= */
 
 function verifyCode(){
 
     const entered =
-    otpInput.value.trim();
+        otpInput.value.trim();
 
-    if(!/^\d{6}$/.test(entered)){
 
-        otpError.textContent =
-        language === "fa"
-        ? "کد ۶ رقمی را وارد کنید."
-        : "Enter the 6-digit code.";
-
-        return;
-    }
-
-    if(Date.now() > codeExpiresAt){
+    if(
+        Date.now() > codeExpiresAt
+    ){
 
         otpError.textContent =
-        language === "fa"
-        ? "کد منقضی شده است. ارسال مجدد را بزنید."
-        : "Code expired. Please resend it.";
+            language === "fa"
+            ? "این کد منقضی شده است. کد جدید بگیرید."
+            : "This code has expired. Request a new code.";
 
         return;
+
     }
 
-    if(entered !== generatedCode){
+
+    if(
+        entered.length !== 6
+    ){
+
+        otpError.textContent =
+            language === "fa"
+            ? "کد باید ۶ رقمی باشد."
+            : "The code must contain 6 digits.";
+
+        return;
+
+    }
+
+
+    if(
+        entered !== generatedCode
+    ){
 
         attempts++;
 
-        const remaining =
-        MAX_ATTEMPTS - attempts;
 
-        if(attempts >= MAX_ATTEMPTS){
+        const remaining =
+            MAX_ATTEMPTS - attempts;
+
+
+        if(
+            attempts >= MAX_ATTEMPTS
+        ){
 
             otpError.textContent =
-            language === "fa"
-            ? "تلاش‌های شما تمام شد. یک کد جدید ارسال کنید."
-            : "Too many attempts. Request a new code.";
+                language === "fa"
+                ? "تعداد تلاش‌ها تمام شد. کد جدید بگیرید."
+                : "Too many attempts. Request a new code.";
 
             verifyBtn.disabled = true;
 
-            resendBtn.disabled = false;
-
             return;
+
         }
 
+
         otpError.textContent =
-        language === "fa"
-        ? `کد اشتباه است. ${remaining} تلاش باقی مانده.`
-        : `Wrong code. ${remaining} attempts remaining.`;
+            language === "fa"
+            ? `کد اشتباه است. ${remaining} تلاش باقی مانده.`
+            : `Wrong code. ${remaining} attempts remaining.`;
 
         otpInput.value = "";
 
         otpInput.focus();
 
         return;
+
     }
+
+
+    /* =========================
+       LOGIN SUCCESS
+    ========================= */
+
+    clearInterval(timerInterval);
+    clearInterval(resendTimer);
+
 
     sessionStorage.setItem(
         "authenticated",
         "true"
     );
 
-    clearInterval(timerInterval);
 
-    loginOverlay.classList.add("hide");
+    successScreen.classList.add(
+        "show"
+    );
 
-    document.body.style.overflow = "auto";
+
+    setTimeout(()=>{
+
+        loginOverlay.classList.add(
+            "hide"
+        );
+
+        document.body.style.overflow =
+            "auto";
+
+        successScreen.classList.remove(
+            "show"
+        );
+
+    },1200);
 
 }
 
 
 verifyBtn.addEventListener(
-"click",
-verifyCode
+    "click",
+    verifyCode
 );
 
 
-/* =====================================================
+/* =========================================================
    ENTER
-===================================================== */
+========================================================= */
 
 otpInput.addEventListener(
-"keydown",
-event=>{
+    "keydown",
+    event=>{
 
-    if(event.key === "Enter"){
-        verifyCode();
+        if(event.key === "Enter"){
+
+            verifyCode();
+
+        }
+
     }
+);
 
-});
 
-
-/* =====================================================
+/* =========================================================
    ONLY NUMBERS
-===================================================== */
+========================================================= */
 
 otpInput.addEventListener(
-"input",
-()=>{
+    "input",
+    ()=>{
 
-    otpInput.value =
-    otpInput.value
-    .replace(/\D/g,"")
-    .slice(0,6);
+        otpInput.value =
+            otpInput.value
+            .replace(/\D/g,"")
+            .slice(0,6);
 
-});
-
-
-/* =====================================================
-   RESEND
-===================================================== */
-
-resendBtn.addEventListener(
-"click",
-()=>{
-
-    if(resendBtn.disabled)
-        return;
-
-    attempts = 0;
-
-    verifyBtn.disabled = false;
-
-    otpError.textContent = "";
-
-    otpInput.value = "";
-
-    showCode();
-
-    otpInput.focus();
-
-});
+    }
+);
 
 
-/* =====================================================
+/* =========================================================
    BACK
-===================================================== */
+========================================================= */
 
 document
 .getElementById("backBtn")
-.addEventListener("click",()=>{
+.addEventListener(
+    "click",
+    ()=>{
 
-    clearInterval(timerInterval);
+        clearInterval(timerInterval);
+        clearInterval(resendTimer);
 
-    otpPanel.classList.remove("show");
+        otpPanel.classList.remove(
+            "show"
+        );
 
-    phonePanel.style.display = "block";
+        phonePanel.style.display =
+            "block";
 
-    otpInput.value = "";
+        otpInput.value = "";
 
-    otpError.textContent = "";
+        otpError.textContent = "";
 
-    phoneError.textContent = "";
+        phoneError.textContent = "";
 
-    phoneInput.focus();
+        phoneInput.focus();
 
-});
+    }
+);
 
 
-/* =====================================================
-   LOGIN INIT
-===================================================== */
+/* =========================================================
+   LOGIN START
+========================================================= */
 
 function initializeLogin(){
 
     const authenticated =
-    sessionStorage.getItem("authenticated");
+        sessionStorage.getItem(
+            "authenticated"
+        );
 
-    if(authenticated === "true"){
 
-        loginOverlay.classList.add("hide");
+    if(
+        authenticated === "true"
+    ){
 
-        document.body.style.overflow = "auto";
+        loginOverlay.classList.add(
+            "hide"
+        );
+
+        document.body.style.overflow =
+            "auto";
 
     }else{
 
-        loginOverlay.classList.remove("hide");
+        loginOverlay.classList.remove(
+            "hide"
+        );
 
-        document.body.style.overflow = "hidden";
+        document.body.style.overflow =
+            "hidden";
 
     }
 
 }
 
-initializeLogin();
-updateLanguage();
 
-
-/* =====================================================
+/* =========================================================
    MUSIC
-===================================================== */
+========================================================= */
 
 const music =
-document.getElementById("backgroundMusic");
+document.getElementById(
+    "backgroundMusic"
+);
 
 const musicBtn =
-document.getElementById("musicBtn");
+document.getElementById(
+    "musicBtn"
+);
 
 const musicBox =
-document.getElementById("musicBox");
+document.getElementById(
+    "musicBox"
+);
 
 let musicEnabled =
-localStorage.getItem("musicEnabled") === "true";
+localStorage.getItem(
+    "musicEnabled"
+) === "true";
 
 music.volume = .18;
 
@@ -2275,69 +2554,85 @@ async function playMusic(){
         return;
 
     try{
+
         await music.play();
-    }catch(e){}
+
+    }catch(error){}
 
 }
 
-musicBtn.addEventListener("click",async()=>{
+musicBtn.addEventListener(
+    "click",
+    async ()=>{
 
-    musicEnabled = !musicEnabled;
+        musicEnabled =
+            !musicEnabled;
 
-    localStorage.setItem(
-        "musicEnabled",
-        musicEnabled
-    );
+        localStorage.setItem(
+            "musicEnabled",
+            musicEnabled
+        );
 
-    if(musicEnabled){
-        await playMusic();
-    }else{
-        music.pause();
+        if(musicEnabled){
+
+            await playMusic();
+
+        }else{
+
+            music.pause();
+
+        }
+
+        updateMusic();
+
     }
-
-    updateMusic();
-
-});
+);
 
 updateMusic();
 
 
-/* =====================================================
+/* =========================================================
    REVEAL
-===================================================== */
+========================================================= */
 
 const observer =
 new IntersectionObserver(
-entries=>{
+    entries=>{
 
-    entries.forEach(entry=>{
+        entries.forEach(entry=>{
 
-        if(entry.isIntersecting){
+            if(
+                entry.isIntersecting
+            ){
 
-            entry.target.classList.add("show");
+                entry.target
+                .classList
+                .add("show");
 
-        }
+            }
 
-    });
+        });
 
-},
-{
-    threshold:.12
-});
+    },
+    {
+        threshold:.12
+    }
+);
 
 document
 .querySelectorAll(".reveal")
-.forEach(el=>observer.observe(el));
+.forEach(
+    el=>observer.observe(el)
+);
 
 
-/* =====================================================
+/* =========================================================
    START
-===================================================== */
+========================================================= */
 
-document.body.style.overflow =
-sessionStorage.getItem("authenticated") === "true"
-? "auto"
-: "hidden";
+updateLanguage();
+
+initializeLogin();
 
 </script>
 
