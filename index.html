@@ -3262,18 +3262,45 @@ otpInput.addEventListener(
 /* =========================================================
    ONLY NUMBERS IN OTP
 ========================================================= */
+/* =========================================================
+   NORMALIZE OTP DIGITS
+========================================================= */
+
+function normalizeDigits(value){
+
+    return value
+        .replace(/[۰-۹]/g, digit =>
+            String(
+                "۰۱۲۳۴۵۶۷۸۹".indexOf(digit)
+            )
+        )
+        .replace(/[٠-٩]/g, digit =>
+            String(
+                "٠١٢٣٤٥٦٧٨٩".indexOf(digit)
+            )
+        )
+        .replace(/\D/g, "")
+        .slice(0, 6);
+
+}
+
+
+/* =========================================================
+   ONLY NUMBERS IN OTP
+========================================================= */
 
 otpInput.addEventListener(
     "input",
     ()=>{
 
         otpInput.value =
-            otpInput.value
-            .replace(/\D/g,"")
-            .slice(0,6);
+            normalizeDigits(
+                otpInput.value
+            );
 
     }
 );
+
 
 
 /* =========================================================
